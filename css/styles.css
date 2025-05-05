@@ -193,3 +193,47 @@ nav a.active,
   border: none;
   cursor: pointer;
 }
+
+.menu-container {
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  height: 100vh;
+}
+
+.menu-container h2 {
+  margin-top: 5%;
+}
+
+.categoria-menu {
+  margin: 30px 0;
+}
+
+.categoria-menu h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.menu-cards {
+  display: flex;
+  gap: 10px;
+}
+
+.menu-card {
+  width: 200px;
+  height: 90%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.menu-card img {
+  width: 100%;
+  height: auto;
+}
+
+.menu-card p{
+  padding: 10px;
+  font-size: 14px;
+}
