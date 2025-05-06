@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The ItalianRest</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Kaisei+Opti&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Monomakh&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -18,8 +21,13 @@
 
   <section id="inicio">
     <div class="inicio-content">
+      <div class="logo-titulo">
+      <img src="img/LogoPlato.png" alt="Platillo italiano" class="logo-platillo">
       <h1>The ItalianRest</h1>
-      <p>Descubra el verdadero arte de la gastronomía italiana, donde cada detalle refleja tradición, calidad y excelencia.</p>
+       </div>
+      <p class="slogan">Descubra el verdadero arte de la gastronomía italiana,
+         <br> cada detalle refleja tradición, calidad y 
+         <br> excelencia.</p> 
     </div>
   </section>
 
@@ -28,7 +36,7 @@
       <img src="img/platillo2.jpg" alt="Platillo italiano" class="col-sm-3 mb-3 img-derecha">
       <div class="text-container">
         <div class="conocenos-texto">
-          <h2>¡Conócenos!</h2>
+          <h2 class="Subtitulo">¡Conócenos!</h2>
           <p>En The ItalianRest, te invitamos a vivir una experiencia culinaria elegante y auténtica, inspirada en el corazón de Italia. Cada platillo celebra ingredientes frescos y recetas tradicionales en un ambiente sofisticado y acogedor, ideal para un momento especial.</p>
         </div>
         <div class="ubicanos-texto">
@@ -42,7 +50,7 @@
   <section id="reservar">
     <div class="reservar-container">
       <div class="reservar-texto">
-        <h2>Reservar</h2>
+        <h2 class="Subtitulo">Reservar</h2>
         <p>Seleccione su mesa de acuerdo al número de personas</p>
       </div>
       <div class="mesa-options">
@@ -68,21 +76,21 @@
 
   <section id="promociones">
     <div class="promociones-container">
-      <h2>¡Promociones!</h2>
+      <h2 class="Subtitulo">¡Promociones!</h2>
       <div class="carrusel-basico">
         <button class="carrusel-btn">&#10094;</button>
         
         <div class="promo-cards">
           <div class="promo-card">
-            <img src="" alt="Bebidas 2x1">
+            <img src="img/Bebidas.jpg" alt="Bebidas 2x1">
             <p>2x1 en todas las bebidas todos los miércoles</p>
           </div>
           <div class="promo-card">
-            <img src="" alt="Postre gratis">
+            <img src="img/Postre.jpg" alt="Postre gratis">
             <p>Disfruta de un postre gratis todos los jueves a partir de las 7:00 p.m.</p>
           </div>
           <div class="promo-card">
-            <img src="" alt="Descuento en reservas">
+            <img src="img/Platos.jpg" alt="Descuento en reservas">
             <p>Gana 100 MNX de descuento en tu tercera reserva!!</p>
           </div>
         </div>
@@ -94,27 +102,27 @@
 
   <section id="menu">
     <div class="menu-container">
-      <h2>Menú</h2>
+      <h2 class="Subtitulo">Menú</h2>
 
       <!-- Bebidas -->
        <div class="categoria-menu">
-        <h3>🍹 Bebidas</h3>
+        <h3 class="Secciones-menu">🍹 Bebidas</h3>
         <div class="carrusel-basico">
           <button class="carrusel-btn">&#10094;</button>
           <div class="menu-cards">
             <div class="menu-card">
               <h4>Aperol Spritz $200</h4>
-              <img src="" alt="Aperol Spritz">
+              <img src="img/Aperol Spritz.jpg" alt="Aperol Spritz">
               <p>Refrescante cóctel con Aperol, prosecco y agua con gas.</p>
             </div>
             <div class="menu-card">
               <h4>Negroni $190</h4>
-              <img src="" alt="Negroni">
+              <img src="img/Negroni.jpg" alt="Negroni">
               <p>Ginebra, vermut rojo y Campari. Amargo y fuerte.</p>
             </div>
             <div class="menu-card">
               <h4>Limoncello $120</h4>
-              <img src="" alt="Limoncello">
+              <img src="img/Limoncello.jpg" alt="Limoncello">
               <p>Licor dulce de limón del sur de Italia.</p>
             </div>
           </div>
@@ -124,23 +132,23 @@
 
        <!-- Comidas -->
        <div class="categoria-menu">
-        <h3>🍽️ Comidas</h3>
+        <h3 class="Secciones-menu">🍽️ Comidas</h3>
         <div class="carrusel-basico">
           <button class="carrusel-btn">&#10094;</button>
           <div class="menu-cards">
             <div class="menu-card">
               <h4>Fettuccine Alfredo $250</h4>
-              <img src="" alt="Fettuccine Alfredo">
+              <img src="img/Fetuccine Alfredo.jpg" alt="Fettuccine Alfredo">
               <p>Salsa cremosa de mantequilla y queso parmesano.</p>
             </div>
             <div class="menu-card">
               <h4>Pollo alla cacciatora $280</h4>
-              <img src="" alt="Pollo alla cacciatora">
+              <img src="img/Pollo alla cacciatora.jpg" alt="Pollo alla cacciatora">
               <p>Pollo guisado con tomate, ajo y hierbas.</p>
             </div>
             <div class="menu-card">
               <h4>Risotto alla milanese $260</h4>
-              <img src="" alt="Risotto alla milanese">
+              <img src="img/Risotto alla milanese.jpg" alt="Risotto alla milanese">
               <p>Arroz cremoso con azafrán y queso parmesano.</p>
             </div>
           </div>
@@ -150,23 +158,23 @@
 
        <!-- Postres -->
        <div class="categoria-menu">
-        <h3>🍰 Postres</h3>
+        <h3 class="Secciones-menu">🍰 Postres</h3>
         <div class="carrusel-basico">
           <button class="carrusel-btn">&#10094;</button>
           <div class="menu-cards">
             <div class="menu-card">
               <h4>Tiramisù $90</h4>
-              <img src="" alt="Tiramisù">
+              <img src="img/Tiramisu.jpg" alt="Tiramisù">
               <p>Bizcocho empapado en café con crema de mascarpone.</p>
             </div>
             <div class="menu-card">
               <h4>Cannoli $40 c/u</h4>
-              <img src="" alt="Cannoli">
+              <img src="img/Canolli.jpg" alt="Cannoli">
               <p>Masa frita con ricotta, chocolate o frutas.</p>
             </div>
             <div class="menu-card">
               <h4>Panna Cotta $120</h4>
-              <img src="" alt="Panna Cotta">
+              <img src="img/Panna Cotta.jpg" alt="Panna Cotta">
               <p>Postre cremoso tipo flan con frutos rojos.</p>
             </div>
           </div>

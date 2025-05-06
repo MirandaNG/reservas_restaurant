@@ -1,12 +1,19 @@
 body {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: "Kaisei Opti", serif;
   margin: 0;
   padding: 0;
   background-color: #ffff;
 }
+.kaisei-opti-regular {
+  font-family: "Kaisei Opti", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 
 .navbar {
-  background-color: #2b2b2b;
+  background-color: rgba(33, 22, 19, 0.9);
   position: fixed;
   width: 100%;
   top: 0;
@@ -35,25 +42,56 @@ nav a.active,
   background-image: url("../img/PlatilloFondo.jpg");
   background-size: cover;
   background-position: center;
-  color: white;
+  color: rgb(255, 255, 255);
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 20px;
+  
 }
 
-.inicio-content h1 {
-  font-size: 48px;
+/* Agrupa logo + título */
+.logo-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 25%;
+  
+}
+
+/* Logo ajustado */
+.logo-platillo {
+  height: 70px;
+  width: 95px;
+}
+
+/* Título junto al logo */
+.logo-titulo h1 {
+  font-size: 65px;
   color: #e85d04;
   font-weight: normal;
-  text-align: left;
+  margin: 0;
 }
 
-.inicio-content p {
+
+.slogan {
   font-size: 20px;
-  text-align: right;
+  text-align: center;
+  margin-left: 35%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
+
+  
+
+.titulo-central {
+  text-align: center;
+  width: 100%;
+  margin-left: 50%;
+}
+
+
+
 
 /* Conócenos */
 .conocenos-container {
@@ -72,12 +110,6 @@ nav a.active,
   align-items: center;
   gap: 40px;
   flex-wrap: wrap;
-}
-
-.text-container .conocenos-texto h2 {
-  color: #e85d04;
-  margin-top: 5%;
-  font-size: 35px;
 }
 
 .text-container .conocenos-texto p {
@@ -103,7 +135,7 @@ nav a.active,
   width: 25%;
   height: 70%;
   display: flex;
-  border-radius: 10px;
+  
 }
 
 .reservar-container {
@@ -118,11 +150,6 @@ nav a.active,
   text-align: center;
 }
 
-.reservar-container h2 {
-  color: #e85d04;
-  margin-top: 0;
-  font-size: 35px;
-}
 
 .reservar-container .mesa-options {
   width: 100%;
@@ -144,6 +171,11 @@ nav a.active,
   font-size: 15px;
 }
 
+/* Subtitulos: conocenos, Reservar, promociones, Menu*/
+.Subtitulo{
+  color: #e85d04;
+  font-size: 35px;
+}
 .promociones-container {
   text-align: center;
   padding: 20px;
@@ -236,4 +268,7 @@ nav a.active,
 .menu-card p{
   padding: 10px;
   font-size: 14px;
+}
+.Secciones-menu {
+  background-color: #e3dad4;
 }
