@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservar</title>
-</head>
-<body>
-    <nav class="navbar">
-        <a href="index.html#inicio">Inicio</a>
-        <a href="index.html#conocenos">Conócenos</a>
-        <a href="index.html#reservar">Reservar</a>
-        <a href="index.html#promociones">Promociones</a>
-        <a href="index.html#menu">Menú</a>
-    </nav>
-    <section id="formulario">
-        <div>
+<?php  
+  include '../includes/header.php';
+?>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4">
             <h1>Reservar</h1>
             <p>¡Bienvenido! Inicie sesion para comenzar</p>
             <div>
@@ -28,6 +18,9 @@
                 </form>
             </div>
         </div>
-    </section>
-</body>
-</html>
+    </div>
+</div>
+
+<?php
+    include '../includes/footer.php';
+?>

@@ -39,7 +39,7 @@ nav a.active,
 
 /* Sección de Portada */
 .inicio-content {
-  background-image: url("../img/PlatilloFondo.jpg");
+  background-image: url("../../assets/img/PlatilloFondo.jpg");
   background-size: cover;
   background-position: center;
   color: rgb(255, 255, 255);
