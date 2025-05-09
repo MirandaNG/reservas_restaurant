@@ -135,7 +135,6 @@ nav a.active,
   width: 25%;
   height: 70%;
   display: flex;
-  
 }
 
 .reservar-container {
@@ -272,18 +271,15 @@ nav a.active,
 .Secciones-menu {
   background-color: #e3dad4;
 }
-#comentarios {
+
+.comentarios-container {
   display: flex;
   padding: 40px 20px;
   background-color: #f9f9f9;
   text-align : center;
   justify-content:  center;
   margin-top: 930px;
-
-}
-
-.comentarios-container {
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
