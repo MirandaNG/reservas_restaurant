@@ -24,3 +24,4 @@ function seleccionarMesa(tipoMesa)
             break;
     }
 }
+
