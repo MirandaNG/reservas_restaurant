@@ -22,15 +22,17 @@ const form = document.getElementById('form-admin');
 const nombre = document.getElementById('nombre');
 const correo = document.getElementById('correo');
 const telefono = document.getElementById('telefono');
+const contrasena = document.getElementById('contrasena');
 const tabla = document.getElementById('tabla-admins');
 
 let editIndex = null;
 
-function abrirModal(n = '', c = '', t = '', index = null) {
+function abrirModal(n = '', c = '', t = '', pass='', index = null) {
     titulo.textContent = n ? 'Editar Administrador' : 'Agregar Administrador';
     nombre.value = n;
     correo.value = c;
     telefono.value = t;
+    contrasena.value = pass;
     editIndex = index;
     modal.style.display = 'flex';
 }
@@ -60,7 +62,7 @@ function renderizarTabla() {
             <td>${admin.correo}</td>
             <td>${admin.telefono}</td>
             <td>
-                <button onclick="abrirModal('${admin.nombre}', '${admin.correo}', '${admin.telefono}', ${index})">Editar</button>
+                <button onclick="abrirModal('${admin.nombre}', '${admin.correo}', '${admin.telefono}', '${admin.contrasena}', ${index})">Editar</button>
                 <button onclick="eliminarAdmin(${index})">Eliminar</button>
             </td>
         `;
@@ -85,7 +87,8 @@ form.addEventListener('submit', function(e) {
     const nuevoAdmin = {
         nombre: nombre.value,
         correo: correo.value,
-        telefono: telefono.value
+        telefono: telefono.value,
+        contrasena: contrasena.value
     };
 
     if (editIndex !== null) {
