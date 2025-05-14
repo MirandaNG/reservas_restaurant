@@ -18,17 +18,14 @@
             <h1>Reservar</h1>
             <p>¡Bienvenido! Inicie sesion para comenzar</p>
             <div>
-                <form action="login.php" method="POST">
-                <label for="usuario">Correo</label>
-                <input type="email" id="usuario" name="correo" required>
-
-                <label for="contrasena">Contraseña</label>
-                <input type="password" id="contrasena" name="contrasena" required>
-
-                <input type="button" value="Registrarse" onclick="location.href='registrar.html'">
-                <button type="submit">Ingresar</button>
-            </form>
-
+                <form>
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" name="usuario" required>
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena" name="contrasena" required>
+                    <input type="button" value="Registrarse" onclick="location.href='registrar.html'">
+                    <input type="button" value="Ingresar">
+                </form>
             </div>
         </div>
     </section>
