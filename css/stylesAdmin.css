@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Kaisei Opti", serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  flex-direction: row; /* Organiza los elementos en fila */
+}
+
+nav {
+  width: 200px;
+  background-color: rgba(33, 22, 19, 0.9);
+  height: 100vh;
+  padding-top: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  left: 0; /* Barra de navegación fija a la derecha */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav li {
+  padding: 15px 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  display: block;
+}
+
+nav a.active {
+  color: #e85d04;
+}
+
+main {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Centrado hacia arriba */
+  margin-left: 220px; /* Deja espacio para la barra de navegación */
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #e85d04; /* Naranja */
+  margin-top: 0; /* Eliminar cualquier margen extra */
+  text-align: center;
+}
+
+.btn-cerrar-sesion {
+  background-color: transparent;
+  border: 2px solid #e85d04;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-left: 20px;
+  margin-bottom: 40px;
+}
+
+.btn-cerrar-sesion:hover {
+  background-color: #e85d04;
+  color: black;
+}
