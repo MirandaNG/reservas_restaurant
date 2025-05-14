@@ -99,15 +99,30 @@ nav a.active,
   display: flex;
 }
 
-.conocenos-container .text-container {
-  width: 60%;
-  height: 50%;
+.conocenos-container {
   display: flex;
   justify-content: left;
   margin-left: 30px;
   align-items: center;
   gap: 40px;
-  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.text-container {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  margin-left: 30px;
+  align-items: center;
+  gap: 40px;
+  flex-direction: column;
+}
+
+#map {
+  height: 100%;
+  width: 700px;
+  border-radius: 20px;
 }
 
 .text-container .conocenos-texto p {
