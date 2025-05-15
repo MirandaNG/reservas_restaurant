@@ -332,3 +332,89 @@ nav a.active,
   text-align: left;
 }
 
+.formulario-container {
+  height: 80%;
+  width: 80%;
+  padding: 20px;
+  margin: auto;
+  border-radius: 12px;
+  margin-top: 5%;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0, 0.15);
+  position: relative;
+}
+
+.formulario-container h1 {
+  margin-top: 0;
+  color: #e85d04;
+}
+
+.form-container {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #f1e4dd;
+  vertical-align: middle;
+}
+
+.inputs-container {
+  display: block;
+  width: 90%;
+  justify-content: space-evenly;
+}
+
+.inputs-container label {
+  width: 30%;
+  padding: 10px;
+  margin-left: 10px;
+  justify-items: left;
+}
+
+.inputs-container input {
+  width: 70%;
+  padding: 10px;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: right;
+  margin-right: 10%;
+  gap: 10px;
+}
+
+.buttons-container input {
+  padding: 10px 18px;
+  border-radius: 6px;
+  margin: 10px 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.ingresar-btn {
+  background-color: #e85d04;
+  border: 1.5px none;
+  color: white;
+}
+
+.ingresar-btn:hover {
+  background-color: transparent;
+  color: #e85d04;
+  border: 1.5px solid #e85d04;
+}
+
+.registrar-btn {
+  background-color: #e85d04;
+  color: white;
+  border: 1.5px none;
+}
+
+.registrar-btn:hover {
+  background-color: transparent;
+  color: #e85d04;
+  border: 1.5px solid #e85d04;
+}
