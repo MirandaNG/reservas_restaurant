@@ -243,8 +243,9 @@ nav a.active,
   text-align: center;
   padding: 20px;
   width: 100%;
-  height: 100vh;
+ min-height: 100vh;
 }
+
 
 .menu-container h2 {
   margin-top: 5%;
@@ -288,10 +289,10 @@ nav a.active,
 #comentarios {
   display: flex;
   padding: 40px 20px;
-  background-color: #f9f9f9;
   text-align : center;
   justify-content:  center;
-  margin-top: 930px;
+  margin: 2% 2%;
+  background-color: #e3dad4;
 
 }
 
