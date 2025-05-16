@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#conocenos">Conócenos</a>
+        <a href="index.html#reservar">Reservar</a>
+        <a href="index.html#promociones">Promociones</a>
+        <a href="index.html#menu">Menú</a>
+    </nav>
+    <section id="formulario">
+        <div>
+            <div>
+                <div>
+                    <img id="imgTipoMesa" src="" alt="Imagen de tipo de mesa reservada" width="100px" height="100px">
+                    <p id="numeroTipoMesa"> personas</p>
+                </div>
+
+                <h1>Reservar</h1>
+                <p>Favor de llenar los siguientes datos para agendar su reserva:</p>
+            </div>
+            <div>
+                <form>
+                    <label for="nombre">Nombre: </label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="fecha">Fecha: </label>
+                    <input type="date" id="fecha" name="fecha" required>
+                    <label for="hora">Hora: </label>
+                    <input type="time" id="hora" name="hora" required>
+                    <label for="mesa">Seleccionar mesa: </label>
+                    <select name="mesa" id="mesa" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                    <div>
+                        <img id="mesaImg" src="img/mDefault.png" alt="Mesa Seleccionada" width="300px" height="200px">
+                    </div>
+                    <div>
+                        <input type="button" value="Cancelar" onclick="location.href='index.html'">
+                        <input type="button" value="Reservar" onclick="reservar()">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <script src="js/app.js"></script>
+        <script src="js/mapaDeMesas.js"></script>
+    </section>
+</body>
+</html>
