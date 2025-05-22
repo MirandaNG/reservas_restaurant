@@ -1,9 +1,10 @@
-import { mostrarReservas, filtrarReservas, editarReserva, actualizarReserva} from "./funcionesFirebase.js";
+import { mostrarReservas, filtrarReservas, editarReserva, actualizarReserva, cerrarModal} from "./funcionesFirebase.js";
 window.mostrarReservas = mostrarReservas;
 window.abrirModal = abrirModal;
 window.cerrarModal = cerrarModal;
 window.editarReserva = editarReserva;
 window.actualizarReserva = actualizarReserva;
+window.cerrarModal = cerrarModal;
 
 document.getElementById("buscador").addEventListener("input", function () {
     const texto = this.value.trim();
@@ -23,12 +24,6 @@ export function abrirModal(id)
     document.getElementById("modal-editar").style.display = "block";
     editarReserva(id);
 }
-  
-export function cerrarModal() 
-{
-    document.getElementById("modal-editar").style.display = "none";
-    mostrarReservas();
-} 
 
 mostrarReservas();
 

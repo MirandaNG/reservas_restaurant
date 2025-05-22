@@ -1,3 +1,3 @@
-import { registrarse } from "../js/funcionesFirebase.js";
+import { registrarse } from "./funcionesFirebase.js";
 window.registrarse = registrarse;
 
