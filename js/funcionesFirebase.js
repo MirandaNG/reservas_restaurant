@@ -1,4 +1,4 @@
-import db from "./firebaseConfig.js";
+import { db, storage } from "./firebaseConfig.js";
 import { addDoc, collection, where, query, getDocs, doc, updateDoc, getDoc} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
 //nota es importante instalar firebase en la raiz del proyecto
@@ -377,4 +377,25 @@ export async function actualizarBebida(id, nuevosDatos) {
 export async function agregarBebida(datos) {
     const bebidasCollection = collection(db, "bebidas");
     await addDoc(bebidasCollection, datos);
+}
+
+export async function agregarAdmin(admin) {
+    const adminsCollection = collection(db, "admins");
+    await addDoc(adminsCollection, admin);
+}
+
+export async function obtenerAdmins() {
+    const adminsCollection = collection(db, "admins");
+    const consulta = await getDocs(adminsCollection);
+    return consulta.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
+export async function actualizarAdmin(id, admin) {
+    const adminRef = doc(db, "admins", id);
+    await updateDoc(adminRef, admin);
+}
+
+export async function eliminarAdmin(id) {
+    const adminRef = doc(db, "admins", id);
+    await deleteDoc(adminRef);
 }

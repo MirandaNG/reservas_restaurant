@@ -29,5 +29,5 @@ async function subirArchivo(file) {
   console.log("URL del archivo:", downloadURL);
 }
 
-export default db;
-export { storage };
+// Make sure to export db and storage if other files need them
+export { db, storage } ;
