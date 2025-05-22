@@ -156,22 +156,20 @@ export async function reservar()
         return;
     }
 
-    addDoc(reservasCollection, { //agrega documento para la reserva
-        nombre: nombre,
-        fecha: fecha,
-        hora: hora,
-        mesa: mesa,
-        propietario: id
-    })
-    .then(() => {
-        
-        alert("Reserva registrada correctamente");
-        //window.location.href = "login.html"; 
-    }
-    )
-    .catch((error) => {
-        console.error("Error al registrar el usuario: ", error);
-    });
+    addDoc(reservasCollection, { 
+    nombre: nombre,
+    fecha: fecha,
+    hora: hora,
+    mesa: mesa,
+    propietario: id
+})
+.then((docRef) => {
+    alert("Reserva registrada correctamente");
+    window.location.href = `boleto.html?id=${docRef.id}`;
+})
+.catch((error) => {
+    console.error("Error al registrar el usuario: ", error);
+});
 
     const consulta = await query(reservasCollection,
         where("propietario", "==", id)
