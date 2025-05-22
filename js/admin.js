@@ -1,21 +1,27 @@
 const links = document.querySelectorAll('nav a');
 const content = document.getElementById('content');
 
-links.forEach(link => {
-  link.addEventListener('click', e => {
-    const section = link.getAttribute('data-section');
+document.querySelector('nav').addEventListener('click', function (e) {
+  if (e.target.tagName === 'A') {
+    e.preventDefault();
+    const section = e.target.getAttribute('data-section');
 
-    // Si es 'Reservas', dejamos que se redirija normalmente
-    if (section === 'Reservas') {
-      return; // no hacemos preventDefault
+    // Redirección según el nombre de sección
+    switch (section) {
+      case 'Administrador':
+        window.location.href = 'admin.html';
+        break;
+      case 'Reservas':
+        window.location.href = 'adminReservas.html';
+        break;
+      case 'Promociones':
+        window.location.href = 'adminPromociones.html';
+        break;
+      case 'Menú':
+        window.location.href = 'adminMenu.html';
+        break;
     }
-
-    e.preventDefault(); // solo bloqueamos para los demás
-
-    links.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-    content.innerHTML = `<h1>${section}</h1>`;
-  });
+  }
 });
 
 const modal = document.getElementById('modal');
