@@ -15,48 +15,36 @@
     <ul>
       <button class="btn-cerrar-sesion">Cerrar sesión</button>
       <li><a href="#" class="active" data-section="Administrador">Administrador</a></li>
-      <li><a href="adminReservas.html" data-section="Reservas">Reservas</a></li>
+      <li><a href="#" data-section="Reservas">Reservas</a></li>
       <li><a href="#" data-section="Promociones">Promociones</a></li>
       <li><a href="#" data-section="Menú">Menú</a></li>
     </ul>
   </nav>
  
   <main id="content">
-    <h1>Administrador</h1>
+    <h1>Reservas</h1>
 
     <div>
       <table>
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Correo</th>
-                <th>Teléfono</th>
-                <th>Acciones</th>
+                <th>Mesa</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Editar</th>
             </tr>
         </thead>
-        <tbody id="tabla-admins"></tbody>
-    </table>
+        <tbody id="tabla-reservas"></tbody>
+      </table>
 
-    <button onclick="abrirModal()">Agregar</button>
+    <button onclick="">Agregar</button>
 
     <div id="modal">
-        <div id="modal-content">
-            <h3 id="modal-titulo">Agregar Administrador</h3>
-            <form id="form-admin">
-                <input type="text" id="nombre" placeholder="Nombre" required>
-                <input type="email" id="correo" placeholder="Correo" required>
-                <input type="tel" id="telefono" placeholder="Teléfono" required>
-                <input type="password" id="contrasena" placeholder="Contraseña" required><br>
-                <button type="submit">Guardar</button>
-                <button type="button" onclick="cerrarModal()">Cancelar</button>
-            </form>
-        </div>
-      </div>
+      
     </div>
+
   </main>
-
-  
-
-  <script src="/js/admin.js"></script> <!-- Aquí enlazamos el archivo JS -->
+  <script type="module" src="/js/adminReservas.js"></script>
 </body>
 </html>
