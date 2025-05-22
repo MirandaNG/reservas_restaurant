@@ -3,15 +3,17 @@ const content = document.getElementById('content');
 
 links.forEach(link => {
   link.addEventListener('click', e => {
-    e.preventDefault();
-
-    // Quitar clase activa de todos
-    links.forEach(l => l.classList.remove('active'));
-
-    link.classList.add('active');
-
     const section = link.getAttribute('data-section');
 
+    // Si es 'Reservas', dejamos que se redirija normalmente
+    if (section === 'Reservas') {
+      return; // no hacemos preventDefault
+    }
+
+    e.preventDefault(); // solo bloqueamos para los demás
+
+    links.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
     content.innerHTML = `<h1>${section}</h1>`;
   });
 });
