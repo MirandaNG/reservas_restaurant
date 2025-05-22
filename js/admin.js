@@ -1,21 +1,23 @@
 const links = document.querySelectorAll('nav a');
 const content = document.getElementById('content');
 
-links.forEach(link => {
-  link.addEventListener('click', e => {
-    const section = link.getAttribute('data-section');
+document.querySelector('nav').addEventListener('click', function (e) {
+  if (e.target.tagName === 'A') {
+    e.preventDefault();
 
-    // Si es 'Reservas', dejamos que se redirija normalmente
+    const links = document.querySelectorAll('nav a');
+    links.forEach(l => l.classList.remove('active'));
+    e.target.classList.add('active');
+
+    const section = e.target.getAttribute('data-section');
+
     if (section === 'Reservas') {
-      return; // no hacemos preventDefault
+      window.location.href = 'adminReservas.html';
+      return;
     }
 
-    e.preventDefault(); // solo bloqueamos para los demás
-
-    links.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
     content.innerHTML = `<h1>${section}</h1>`;
-  });
+  }
 });
 
 const modal = document.getElementById('modal');
