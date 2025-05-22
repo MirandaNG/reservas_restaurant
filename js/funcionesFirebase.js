@@ -1,6 +1,6 @@
 import { cerrarModal } from "./adminReservas.js";
 import db from "./firebaseConfig.js";
-import { addDoc, collection, where, query, getDocs, doc, updateDoc, getDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { addDoc, collection, where, query, getDocs, doc, updateDoc, getDoc} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
 //nota es importante instalar firebase en la raiz del proyecto
 //npm install firebase
