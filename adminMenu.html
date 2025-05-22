@@ -23,7 +23,50 @@
 
   <main id="content">
     <h1>Menú</h1>
+      <h3>Menú de Bebidas</h3>
 
+    <table border="1">
+    <thead>
+      <tr>
+        <th>Imagen</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tabla-bebidas">
+      <!-- Aquí se cargarán las bebidas desde Firebase -->
+    </tbody>
+  </table>
+
+  <button id="btn-agregar">Agregar Bebida</button>
+
+  <!-- Modal para agregar/editar bebidas -->
+  <dialog id="modal-editar">
+    <form id="form-editar">
+      <h2>Editar Bebida</h2>
+      <input type="hidden" id="bebida-id" />
+
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required><br>
+
+      <label for="descripcion">Descripción:</label>
+      <input type="text" id="descripcion" name="descripcion" required><br>
+
+      <label for="precio">Precio:</label>
+      <input type="number" id="precio" name="precio" required><br>
+
+      <label for="imagen">Imagen:</label>
+      <input type="file" id="imagen" accept="image/*"><br>
+
+      <button type="submit">Guardar</button>
+      <button type="button" id="btn-cancelar">Cancelar</button>
+    </form>
+  </dialog>
+
+
+  <script type="module" src="js/adminMenu.js"></script>
 
   </main>
 

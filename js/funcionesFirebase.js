@@ -1,6 +1,6 @@
 import db from "./firebaseConfig.js";
-import { addDoc, collection, where, query, getDocs} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
+import { addDoc, collection, where, query, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
 //nota es importante instalar firebase en la raiz del proyecto
 //npm install firebase
 
@@ -163,4 +163,31 @@ export async function mostrarReservas()
         ...doc.data()
     }));
     console.log(reservas);
+}
+
+export async function obtenerBebidas() {
+    const bebidasCollection = collection(db, "bebidas");
+    const consulta = await getDocs(bebidasCollection);
+    const bebidas = consulta.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    }));
+    return bebidas;
+}
+
+export async function subirImagen(file) {
+    const storage = getStorage();
+    const storageRef = ref(storage, `bebidas/${file.name}`);
+    const snapshot = await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(snapshot.ref);
+    return url;
+}
+
+export async function actualizarBebida(id, nuevosDatos) {
+    const bebidaRef = doc(db, "bebidas", id);
+    await updateDoc(bebidaRef, nuevosDatos);
+}
+export async function agregarBebida(datos) {
+    const bebidasCollection = collection(db, "bebidas");
+    await addDoc(bebidasCollection, datos);
 }
