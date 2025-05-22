@@ -80,8 +80,12 @@ function mostrarImagenTipoMesa()
             break;
     }
 
-    imgElement.src = `img/Mesa${tipoDeMesa}.png`; // Cambia la ruta según tu estructura de archivos
-    numeroPersonas.textContent = tipoDeMesa + ' personas'; // Cambia el texto según el tipo de mesa
+    if(imgElement !== null)
+    {
+        imgElement.src = `img/Mesa${tipoDeMesa}.png`; // Cambia la ruta según tu estructura de archivos
+        numeroPersonas.textContent = tipoDeMesa + ' personas'; // Cambia el texto según el tipo de mesa
+    }
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {
