@@ -70,8 +70,8 @@ function renderizarTabla() {
             <td>${admin.correo}</td>
             <td>${admin.telefono}</td>
             <td>
-                <button onclick="abrirModal('${admin.nombre}', '${admin.correo}', '${admin.telefono}', '${admin.contrasena}', ${index})">Editar</button>
-                <button onclick="eliminarAdmin(${index})">Eliminar</button>
+                <button class="btn-editar"onclick="abrirModal('${admin.nombre}', '${admin.correo}', '${admin.telefono}', '${admin.contrasena}', ${index})">Editar</button>
+                <button class="btn-eliminar"onclick="eliminarAdmin(${index})">Eliminar</button>
             </td>
         `;
         tabla.appendChild(fila);

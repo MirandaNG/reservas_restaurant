@@ -22,9 +22,9 @@
 </nav>
  
   <main id="content">
-    <h1>Administrador</h1>
+    <h1 class="nombre-seccion">Administrador</h1>
 
-    <div>
+    <div class="tabla-admin">
       <table>
         <thead>
             <tr>
@@ -37,18 +37,18 @@
         <tbody id="tabla-admins"></tbody>
     </table>
 
-    <button onclick="abrirModal()">Agregar</button>
+    <button class="btn-agregar"onclick="abrirModal()">Agregar</button>
 
     <div id="modal">
         <div id="modal-content">
-            <h3 id="modal-titulo">Agregar Administrador</h3>
+            <h3 class="titulo-formulario"id="modal-titulo">Agregar Administrador</h3>
             <form id="form-admin">
                 <input type="text" id="nombre" placeholder="Nombre" required>
                 <input type="email" id="correo" placeholder="Correo" required>
                 <input type="tel" id="telefono" placeholder="Teléfono" required>
                 <input type="password" id="contrasena" placeholder="Contraseña" required><br>
-                <button type="submit">Guardar</button>
-                <button type="button" onclick="cerrarModal()">Cancelar</button>
+                <button class="btn-guardar"type="submit">Guardar</button>
+                <button class="btn-cancelar"type="button" onclick="cerrarModal()">Cancelar</button>
             </form>
         </div>
       </div>
