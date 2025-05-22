@@ -4,19 +4,23 @@ const content = document.getElementById('content');
 document.querySelector('nav').addEventListener('click', function (e) {
   if (e.target.tagName === 'A') {
     e.preventDefault();
-
-    const links = document.querySelectorAll('nav a');
-    links.forEach(l => l.classList.remove('active'));
-    e.target.classList.add('active');
-
     const section = e.target.getAttribute('data-section');
 
-    if (section === 'Reservas') {
-      window.location.href = 'adminReservas.html';
-      return;
+    // Redirección según el nombre de sección
+    switch (section) {
+      case 'Administrador':
+        window.location.href = 'admin.html';
+        break;
+      case 'Reservas':
+        window.location.href = 'adminReservas.html';
+        break;
+      case 'Promociones':
+        window.location.href = 'adminPromociones.html';
+        break;
+      case 'Menú':
+        window.location.href = 'adminMenu.html';
+        break;
     }
-
-    content.innerHTML = `<h1>${section}</h1>`;
   }
 });
 
