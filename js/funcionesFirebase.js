@@ -7,7 +7,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstati
 
 export function cerrarModal() 
 {
-    document.getElementById("modal-editar").style.display = "none";
+     document.getElementById("modal-editar").classList.remove("activo");
     mostrarReservas();
 } 
 
@@ -211,7 +211,7 @@ export async function filtrarReservas()
               <td>${reserva.mesa}</td>
               <td>${reserva.fecha}</td>
               <td>${reserva.hora}</td>
-              <td><button onclick="abrirModal('${reserva.id}')">Editar</button></td>
+              <td><button class="btn-editar"onclick="abrirModal('${reserva.id}')">Editar</button></td>
             `;
           
             tabla.appendChild(fila);
@@ -246,7 +246,7 @@ export async function mostrarReservas()
               <td>${reserva.mesa}</td>
               <td>${reserva.fecha}</td>
               <td>${reserva.hora}</td>
-              <td><button onclick="abrirModal('${reserva.id}')">Editar</button></td>
+              <td><button class="btn-editar"onclick="abrirModal('${reserva.id}')">Editar</button></td>
             `;
           
             tabla.appendChild(fila);

@@ -21,7 +21,7 @@ document.getElementById("buscador").addEventListener("input", function () {
 
 export function abrirModal(id) 
 {
-    document.getElementById("modal-editar").style.display = "block";
+    document.getElementById("modal-editar").classList.add("activo"); // <-- Cambia esto
     editarReserva(id);
 }
 

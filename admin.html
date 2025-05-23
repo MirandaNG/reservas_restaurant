@@ -39,19 +39,23 @@
 
     <button class="btn-agregar"onclick="abrirModal()">Agregar</button>
 
+    <div class="emergente-form">
+      
     <div id="modal">
-        <div id="modal-content">
+        <div class="modal-contenido"id="modal-content">
             <h3 class="titulo-formulario"id="modal-titulo">Agregar Administrador</h3>
-            <form id="form-admin">
+            <form class="emergente-inputs"id="form-admin">
                 <input type="text" id="nombre" placeholder="Nombre" required>
                 <input type="email" id="correo" placeholder="Correo" required>
                 <input type="tel" id="telefono" placeholder="Teléfono" required>
                 <input type="password" id="contrasena" placeholder="Contraseña" required><br>
+                
                 <button class="btn-guardar"type="submit">Guardar</button>
                 <button class="btn-cancelar"type="button" onclick="cerrarModal()">Cancelar</button>
             </form>
         </div>
       </div>
+    </div>
     </div>
   </main>
 

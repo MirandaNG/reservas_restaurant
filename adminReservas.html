@@ -11,25 +11,7 @@
 </head>
 <body>
 
-    <style>
-      .modal {
-        display: none; /* Oculto por defecto */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
-      }
-
-      .modal-contenido {
-        background: white;
-        margin: 10% auto;
-        padding: 20px;
-        width: 500px;
-      }
-
-    </style>
+   
   <nav>
     <ul>
       <button class="btn-cerrar-sesion">Cerrar sesión</button>
@@ -41,11 +23,11 @@
   </nav>
  
   <main id="content">
-    <h1>Reservas</h1>
+    <h1 class="nombre-seccion">Reservas</h1>
 
-    <input type="text" id="buscador" placeholder="Buscar reserva por nombre" />
+    <input class="buscador"type="text" id="buscador" placeholder="🔍Buscar reserva por nombre" />
 
-    
+    <div class="tabla-reservas">
     <table>
       <thead>
           <tr>
@@ -58,12 +40,14 @@
       </thead>
       <tbody id="tabla-reservas"></tbody>
     </table>
+    </div>
 
     <div id="modal-editar" class="modal">
       <div class="modal-contenido">
 
         <h2>Editar reserva</h2>
-        <form>
+        <form >
+          <div class="emergente-inputs">
           <label for="nombre">Nombre: </label>
           <input type="text" id="nombre" name="nombre" required>
           <label for="fecha">Fecha: </label>
@@ -93,8 +77,9 @@
               <option value="19">19</option>
               <option value="20">20</option>
           </select>
-          <input type="button" onclick="cerrarModal()" value="Cancelar">
-          <input type="button" onclick="actualizarReserva()" value="Guardar">
+          </div>
+          <input class="btn-cancelar"type="button" onclick="cerrarModal()" value="Cancelar">
+          <input class="btn-guardar"type="button" onclick="actualizarReserva()" value="Guardar">
       </form>
     </div>
 
