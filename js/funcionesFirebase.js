@@ -1,4 +1,4 @@
-import { db, storage } from "./firebaseConfig.js";
+import { db, storage } from "../js/firebaseConfig.js";
 import { addDoc, collection, where, query, getDocs, doc, updateDoc, getDoc} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
 //nota es importante instalar firebase en la raiz del proyecto
@@ -144,15 +144,9 @@ export async function reservar()
     const fechaDisponible = await getDocs(consultaHorario);
     const mesaDisponible = await getDocs(consultaMesa);
 
-    if(!fechaDisponible.empty)
+    if(!fechaDisponible.empty && !mesaDisponible.empty)
     {
-        alert("La fecha o el horario seleccionado esta ocupado");  //si no encuentra coincidencias
-        return;
-    }
-
-    if(!mesaDisponible.empty)
-    {
-        alert("La mesa seleccionada esta ocupada");
+        alert("La fecha/hora o mesa seleccionada esta ocupada");  //si no encuentra coincidencias
         return;
     }
 
