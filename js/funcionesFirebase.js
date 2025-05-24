@@ -352,33 +352,6 @@ export async function actualizarReserva()
     }
   }
 
-export async function obtenerBebidas() {
-    const bebidasCollection = collection(db, "bebidas");
-    const consulta = await getDocs(bebidasCollection);
-    const bebidas = consulta.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-    }));
-    return bebidas;
-}
-
-export async function subirImagen(file) {
-    const storage = getStorage();
-    const storageRef = ref(storage, `bebidas/${file.name}`);
-    const snapshot = await uploadBytes(storageRef, file);
-    const url = await getDownloadURL(snapshot.ref);
-    return url;
-}
-
-export async function actualizarBebida(id, nuevosDatos) {
-    const bebidaRef = doc(db, "bebidas", id);
-    await updateDoc(bebidaRef, nuevosDatos);
-}
-export async function agregarBebida(datos) {
-    const bebidasCollection = collection(db, "bebidas");
-    await addDoc(bebidasCollection, datos);
-}
-
 export async function agregarAdmin(admin) {
     const adminsCollection = collection(db, "admins");
     await addDoc(adminsCollection, admin);
@@ -399,3 +372,34 @@ export async function eliminarAdmin(id) {
     const adminRef = doc(db, "admins", id);
     await deleteDoc(adminRef);
 }
+
+// FUNCIONES BEBIDAS
+
+export async function obtenerBebidas() {
+const bebidasCollection = collection(db, "bebidas");
+const consulta = await getDocs(bebidasCollection);
+const bebidas = consulta.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+}));
+return bebidas;
+}
+
+export async function subirImagen(file) {
+    const storage = getStorage();
+    const storageRef = ref(storage, `bebidas/${file.name}`);
+    const snapshot = await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(snapshot.ref);
+    return url;
+}
+
+export async function actualizarBebida(id, nuevosDatos) {
+    const bebidaRef = doc(db, "bebidas", id);
+    await updateDoc(bebidaRef, nuevosDatos);
+}
+export async function agregarBebida(datos) {
+    const bebidasCollection = collection(db, "bebidas");
+    await addDoc(bebidasCollection, datos);
+}
+
+// -----------------
