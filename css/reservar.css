@@ -1,0 +1,161 @@
+body {
+  font-family: "Kaisei Opti", serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffff;
+}
+.kaisei-opti-regular {
+  font-family: "Kaisei Opti", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.navbar {
+  background-color: rgba(33, 22, 19, 0.9);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 0;  
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  vertical-align: middle;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 16px;
+}
+
+nav a.active,
+.navbar a:hover {
+  color: #e85d04;
+}
+.btn-reservar{
+  display: block;
+  padding: 10px 20px;
+  background-color: #d15507;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-reservar:hover {
+  background-color: #8e3204;
+}
+.btn-cancelar {
+  background-color: transparent;
+  color: #ff7f16;
+  border: 2px solid #ff7f16;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn-cancelar:hover{
+  background-color: #ff7f16;
+  color: white;
+}
+.btn-cerrar-sesion{
+
+  background-color: transparent;
+  border: 2px solid #e85d04;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-left: 20px;
+  margin-left: 60%;
+  
+}
+
+.btn-cerrar-sesion:hover {
+  background-color: #e85d04;
+  color: black;
+}
+
+.titulo-reservar {
+  text-align: center;
+  font-size: 2.5em;
+  margin: 50px;
+  color: #d15507;
+  
+  width: 90%;
+  margin-right: 19%;
+}
+
+.titulo-mesa{
+    display: flex;
+  
+  gap: 5px;
+
+  margin-top: 60px;
+  
+  
+}
+.num-mesa{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    margin-left:80px ;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 0px;
+}
+.nombre-fecha-hora{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    gap: 10px;
+    max-width: 100%;
+    
+}
+.nombre-fecha-hora input{
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+.campos{
+    display: flex;
+    
+    align-items: left;
+    justify-content: left;
+    height: auto;
+    margin-left: 18%;
+    margin-right: 14%;
+    gap: 60px;
+    margin-top: 0px;
+    
+}
+.select{
+     width: 180px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+.botones{
+    display: flex;
+    align-items: center;
+    margin-left: 41%;
+    margin-top: 20px;
+    gap: 20px;
+}
