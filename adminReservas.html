@@ -11,37 +11,76 @@
 </head>
 <body>
 
-<nav>
-  <ul>
-    <button class="btn-cerrar-sesion">Cerrar sesión</button>
-    <li><a href="admin.html" data-section="Administrador">Administrador</a></li>
-    <li><a href="adminReservas.html" data-section="Reservas">Reservas</a></li>
-    <li><a href="adminPromociones.html" data-section="Promociones">Promociones</a></li>
-    <li><a href="adminMenu.html" data-section="Menú">Menú</a></li>
-  </ul>
-</nav>
+   
+  <nav>
+    <ul>
+      <button class="btn-cerrar-sesion">Cerrar sesión</button>
+      <li><a href="#" data-section="Administrador">Administrador</a></li>
+      <li><a href="#" data-section="Reservas">Reservas</a></li>
+      <li><a href="#"data-section="Promociones">Promociones</a></li>
+      <li><a href="#" data-section="Menu">Menú</a></li>
+    </ul>
+  </nav>
  
   <main id="content">
-    <h1>Reservas</h1>
+    <h1 class="nombre-seccion">Reservas</h1>
 
-    <div>
-      <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Mesa</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Editar</th>
-            </tr>
-        </thead>
-        <tbody id="tabla-reservas"></tbody>
-      </table>
+    <input class="buscador"type="text" id="buscador" placeholder="🔍Buscar reserva por nombre" />
 
-    <button onclick="">Agregar</button>
+    <div class="tabla-reservas">
+    <table>
+      <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Mesa</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Editar</th>
+          </tr>
+      </thead>
+      <tbody id="tabla-reservas"></tbody>
+    </table>
+    </div>
 
-    <div id="modal">
-      
+    <div id="modal-editar" class="modal">
+      <div class="modal-contenido">
+
+        <h2>Editar reserva</h2>
+        <form >
+          <div class="emergente-inputs">
+          <label for="nombre">Nombre: </label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="fecha">Fecha: </label>
+          <input type="date" id="fecha" name="fecha" required>
+          <label for="hora">Hora: </label>
+          <input type="time" id="hora" name="hora" required>
+          <label for="mesa">Seleccionar mesa: </label>
+          <select name="mesa" id="mesa" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+          </select>
+          </div>
+          <input class="btn-cancelar"type="button" onclick="cerrarModal()" value="Cancelar">
+          <input class="btn-guardar"type="button" onclick="actualizarReserva()" value="Guardar">
+      </form>
     </div>
 
   </main>

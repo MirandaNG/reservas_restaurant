@@ -1,0 +1,39 @@
+.boleto {
+    max-width: 400px;
+    margin: 50px auto;
+    border: 2px dashed #333;
+    padding: 30px;
+    border-radius: 15px;
+    background:  #E3D8D4;
+    text-align: center;
+    position: relative;
+}
+.boleto h2 {
+    margin-bottom: 20px;
+     color: #e85d04;
+}
+.boleto .dato {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+#qrcode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    width: 100%;
+}
+.botones-boleto {
+    margin-top: 20px;
+}
+.btn-boton {
+  background-color: #d15507;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-boton:hover {
+  background-color: #c74b1e;
+}

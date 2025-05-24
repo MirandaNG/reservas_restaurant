@@ -1,8 +1,15 @@
-import db from "./firebaseConfig.js";
-import { addDoc, collection, where, query, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { db, storage } from "./firebaseConfig.js";
+import { addDoc, collection, where, query, getDocs, doc, updateDoc, getDoc} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
 //nota es importante instalar firebase en la raiz del proyecto
 //npm install firebase
+
+
+export function cerrarModal() 
+{
+     document.getElementById("modal-editar").classList.remove("activo");
+    mostrarReservas();
+} 
 
 //esta funcion es para usuarios, hace falta la de administradores
 export async function registrarse()
@@ -123,22 +130,46 @@ export async function reservar()
     //guardar en firestore
     const reservasCollection = collection(db, "reservas");
 
-    addDoc(reservasCollection, { //agrega documento para la reserva
-        nombre: nombre,
-        fecha: fecha,
-        hora: hora,
-        mesa: mesa,
-        propietario: id
-    })
-    .then(() => {
-        
-        alert("Reserva registrada correctamente");
-        //window.location.href = "login.html"; 
+    //verificamos que la fecha y hora este libre, tambien la mesa
+
+    const consultaHorario = await query(reservasCollection,
+        where("fecha", "==", fecha),
+        where("hora", "==", hora)
+    );
+
+    const consultaMesa = await query(reservasCollection, 
+        where("mesa", "==", mesa)
+    );
+
+    const fechaDisponible = await getDocs(consultaHorario);
+    const mesaDisponible = await getDocs(consultaMesa);
+
+    if(!fechaDisponible.empty)
+    {
+        alert("La fecha o el horario seleccionado esta ocupado");  //si no encuentra coincidencias
+        return;
     }
-    )
-    .catch((error) => {
-        console.error("Error al registrar el usuario: ", error);
-    });
+
+    if(!mesaDisponible.empty)
+    {
+        alert("La mesa seleccionada esta ocupada");
+        return;
+    }
+
+    addDoc(reservasCollection, { 
+    nombre: nombre,
+    fecha: fecha,
+    hora: hora,
+    mesa: mesa,
+    propietario: id
+})
+.then((docRef) => {
+    alert("Reserva registrada correctamente");
+    window.location.href = `boleto.html?id=${docRef.id}`;
+})
+.catch((error) => {
+    console.error("Error al registrar el usuario: ", error);
+});
 
     const consulta = await query(reservasCollection,
         where("propietario", "==", id)
@@ -153,17 +184,173 @@ export async function reservar()
 
 }
 
-//esta funcion esta pendiente
+export async function filtrarReservas()
+{
+    const input = document.getElementById("buscador").value;
+    const tabla = document.getElementById("tabla-reservas");
+    tabla.innerHTML = "";
+
+    try {
+
+        const reservasCollection = await collection(db, "reservas");
+        const consultaReservas = await getDocs(reservasCollection);
+        const reservas = consultaReservas.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        const reservasFiltradas = reservas.filter(reserva =>
+            reserva.nombre.toLowerCase().includes(input)
+          );
+
+        reservasFiltradas.forEach(reserva => {
+            const fila = document.createElement("tr");
+          
+            fila.innerHTML = `
+              <td>${reserva.nombre}</td>
+              <td>${reserva.mesa}</td>
+              <td>${reserva.fecha}</td>
+              <td>${reserva.hora}</td>
+              <td><button class="btn-editar"onclick="abrirModal('${reserva.id}')">Editar</button></td>
+            `;
+          
+            tabla.appendChild(fila);
+          });
+
+        
+    } catch (error) {
+        alert('Error al mostrar la tabla');
+    }
+
+}
+
 export async function mostrarReservas()
 {
-    const reservasCollection = await collection(db, "reservas");
-    const consultaReservas = await getDocs(reservasCollection);
-    const reservas = consultaReservas.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-    }));
-    console.log(reservas);
+    const tabla = document.getElementById("tabla-reservas");
+    tabla.innerHTML = "";
+
+    try {
+
+        const reservasCollection = await collection(db, "reservas");
+        const consultaReservas = await getDocs(reservasCollection);
+        const reservas = consultaReservas.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        reservas.forEach(reserva => {
+            const fila = document.createElement("tr");
+          
+            fila.innerHTML = `
+              <td>${reserva.nombre}</td>
+              <td>${reserva.mesa}</td>
+              <td>${reserva.fecha}</td>
+              <td>${reserva.hora}</td>
+              <td><button class="btn-editar"onclick="abrirModal('${reserva.id}')">Editar</button></td>
+            `;
+          
+            tabla.appendChild(fila);
+        });
+
+        
+    } catch (error) {
+        alert('Error al mostrar la tabla');
+    }
 }
+
+export async function editarReserva(id)
+{
+    try {
+        localStorage.setItem("reservaId", id);
+        const reservasCollection = await collection(db, "reservas");
+        const consultaReservas = await getDocs(reservasCollection);
+        const reservas = consultaReservas.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        const reservasFiltradas = reservas.filter(reserva =>
+            reserva.id.toLowerCase() === id.toLowerCase()
+        );
+
+        reservasFiltradas.forEach(reserva => {
+            document.getElementById("nombre").value = reserva.nombre;
+            document.getElementById("mesa").value = reserva.mesa;
+            document.getElementById("fecha").value = reserva.fecha;
+            document.getElementById("hora").value = reserva.hora;
+        });
+
+    } catch (error) {
+        alert("no se pudieron obtener los datos de la reservacion");
+    }
+}
+
+export async function actualizarReserva() 
+{
+    const nombre = document.getElementById("nombre").value;
+    const fecha = document.getElementById("fecha").value;
+    const hora = document.getElementById("hora").value;
+    const mesa = document.getElementById("mesa").value;
+    const idReserva = localStorage.getItem("reservaId");
+  
+    if (!nombre || !fecha || !hora || !mesa) {
+      alert("Por favor completa todos los campos.");
+      return;
+    }
+  
+    const fechaHoraSeleccionada = new Date(`${fecha}T${hora}`);
+    const fechaHoraActual = new Date();
+  
+    if (fechaHoraSeleccionada <= fechaHoraActual) {
+      alert("La fecha y hora deben ser posteriores a la actual.");
+      return;
+    }
+  
+    try {
+      const reservaRef = doc(db, "reservas", idReserva);
+      const reservaSnap = await getDoc(reservaRef);
+  
+      if (!reservaSnap.exists()) {
+        alert("No se encontró ninguna reserva con ese ID.");
+        return;
+      }
+  
+      // Verificar si otra reserva ya ocupa esa mesa en la misma fecha y hora
+      const reservasCollection = collection(db, "reservas");
+  
+      const consultaConflicto = query(
+        reservasCollection,
+        where("fecha", "==", fecha),
+        where("hora", "==", hora),
+        where("mesa", "==", mesa)
+      );
+  
+      const reservasConflicto = await getDocs(consultaConflicto);
+  
+      // Verificamos que el conflicto no sea la misma reserva que se está editando
+      const conflicto = reservasConflicto.docs.find(doc => doc.id !== idReserva);
+  
+      if (conflicto) {
+        alert("Ya hay una reserva con esa mesa, fecha y hora.");
+        return;
+      }
+  
+      // Actualizar la reserva
+      await updateDoc(reservaRef, {
+        nombre,
+        fecha,
+        hora,
+        mesa
+      });
+  
+      alert("Reserva actualizada con éxito.");
+      cerrarModal();
+  
+    } catch (error) {
+      console.error("Error al actualizar la reserva:", error);
+      alert("Hubo un error al actualizar la reserva.");
+    }
+  }
 
 export async function obtenerBebidas() {
     const bebidasCollection = collection(db, "bebidas");
@@ -190,4 +377,25 @@ export async function actualizarBebida(id, nuevosDatos) {
 export async function agregarBebida(datos) {
     const bebidasCollection = collection(db, "bebidas");
     await addDoc(bebidasCollection, datos);
+}
+
+export async function agregarAdmin(admin) {
+    const adminsCollection = collection(db, "admins");
+    await addDoc(adminsCollection, admin);
+}
+
+export async function obtenerAdmins() {
+    const adminsCollection = collection(db, "admins");
+    const consulta = await getDocs(adminsCollection);
+    return consulta.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
+export async function actualizarAdmin(id, admin) {
+    const adminRef = doc(db, "admins", id);
+    await updateDoc(adminRef, admin);
+}
+
+export async function eliminarAdmin(id) {
+    const adminRef = doc(db, "admins", id);
+    await deleteDoc(adminRef);
 }
