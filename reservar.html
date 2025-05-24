@@ -4,38 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservar</title>
+     <link rel="stylesheet" href="./css/reservar.css">
 </head>
 <body>
-  <nav>
-    <ul>
+  <nav class="navbar">
+    
       <button class="btn-cerrar-sesion">Cerrar sesión</button>
-      <li><a href="admin.html" data-section="Admin" class="active" data-section="Administrador">Administrador</a></li>
-      <li><a href="#">Reservas</a></li>
-      <li><a href="adminPromociones.html" data-section="Promociones" data-section="Promociones">Promociones</a></li>
-      <li><a href="adminMenu.html" data-section="Menu" data-section="Menú">Menú</a></li>
-    </ul>
   </nav>
     <section id="formulario">
         <div>
             <div>
-                <div>
-                    <img id="imgTipoMesa" src="" alt="Imagen de tipo de mesa reservada" width="100px" height="100px">
-                    <p id="numeroTipoMesa"> personas</p>
-                </div>
+                <div class="titulo-mesa">
+                            <div class="num-mesa">
+                                <img class="img-mesa"id="imgTipoMesa" src="" alt="Imagen de tipo de mesa reservada" width="100px" height="100px">
+                                <p id="numeroTipoMesa"> personas</p>
+                            </div>
 
-                <h1>Reservar</h1>
+                         <h1 class="titulo-reservar">Reservar</h1>
+                    </div>
+         <div class="form">
                 <p>Favor de llenar los siguientes datos para agendar su reserva:</p>
             </div>
             <div>
-                <form>
+                <form class="form">
+                    <div class="campos">
+                         <div class="nombre-fecha-hora">
                     <label for="nombre">Nombre: </label>
                     <input type="text" id="nombre" name="nombre" required>
                     <label for="fecha">Fecha: </label>
                     <input type="date" id="fecha" name="fecha" required>
+                       
                     <label for="hora">Hora: </label>
                     <input type="time" id="hora" name="hora" required>
+                     </div>
+                     <div class="seleccion-mesa">
                     <label for="mesa">Seleccionar mesa: </label>
-                    <select name="mesa" id="mesa" required>
+                    <select  class="select" name="mesa" id="mesa" required>
                         <option value="" disabled selected>Seleccione una opción</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -61,9 +65,12 @@
                     <div>
                         <img id="mesaImg" src="img/mDefault.png" alt="Mesa Seleccionada" width="300px" height="200px">
                     </div>
-                    <div>
-                        <input type="button" value="Cancelar" onclick="location.href='index.html'">
-                        <input type="button" value="Reservar" onclick="reservar()">
+                    </div>
+                    </div>
+                </div>
+                    <div class="botones">
+                        <input class="btn-cancelar"type="button" value="Cancelar" onclick="location.href='index.html'">
+                        <input class="btn-reservar"type="button" value="Reservar" onclick="reservar()">
                     </div>
                 </form>
             </div>
