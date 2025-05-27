@@ -180,6 +180,18 @@ btnAgregarPostre.addEventListener("click", () => {
   formPostre.reset();
   modalPostre.showModal();
 });
+// Funciones globales para cerrar modales
+window.cerrarModalBebida = function() {
+  document.getElementById("modal-editar").close();
+  document.getElementById("form-editar").reset();
+  bebidaActualId = null;
+};
+
+window.cerrarModalPostre = function() {
+  document.getElementById("modal-editar-postre").close();
+  document.getElementById("form-editar-postre").reset();
+  postreActualId = null;
+};
 
 // Cargar al inicio
 cargarBebidas();

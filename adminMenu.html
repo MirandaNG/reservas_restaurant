@@ -22,87 +22,97 @@
 </nav>
 
   <main id="content">
-    <h1>Menú</h1><br>
-
-      <h3>Menú de Bebidas</h3>
+    <h1 class="nombre-seccion">Menú</h1><br>
+    
+    <!-- Sección de Bebidas -->
+    <h3 class="nombre-subtitulo">Menú de Bebidas 🍹</h3>
+    <div class="tabla-menu">
+      <div class="tabla-scroll-container">
         <table border="1">
-        <thead>
-          <tr>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="tabla-bebidas">
-          <!-- Aquí se cargarán las bebidas desde Firebase -->
-        </tbody>
-      </table>
-
-      <button id="btn-agregar">Agregar Bebida</button>
-
-      <!-- Modal para agregar/editar bebidas -->
-      <dialog id="modal-editar">
-        <form id="form-editar">
-          <h2>Editar Bebida</h2>
-          <input type="hidden" id="bebida-id" />
-
-          <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" required><br>
-
-          <label for="descripcion">Descripción:</label>
-          <input type="text" id="descripcion" name="descripcion" required><br>
-
-          <label for="precio">Precio:</label>
-          <input type="number" id="precio" name="precio" required><br>
-
-          <label for="url">URL de la Imagen:</label>
-          <input type="url" id="url" name="url" placeholder="https://..."><br>
-
-
-          <button type="submit">Guardar</button>
-          <button type="button" id="btn-cancelar">Cancelar</button>
-        </form>
-      </dialog>
-
-      <br><h3>Menú de Comidas</h3><br>
-
-      <br><h3>Menú de Postres</h3><br>
-       <table border="1">
-        <thead>
-          <tr>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="tabla-postres">
-          <!-- Aquí se cargarán los postres desde Firebase -->
-        </tbody>
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-bebidas">
+            <!-- Aquí se cargarán las bebidas desde Firebase -->
+          </tbody>
         </table>
+      </div>
+      <button class="btn-agregar-bebida" id="btn-agregar">Agregar Bebida</button>
+    </div>
 
-      <button id="btn-agregar-postre">Agregar Postre</button>
-      <!-- Modal para agregar/editar postres -->
-       <dialog id="modal-editar-postre">
-          <form id="form-editar-postre">
-            <h2>Editar Postre</h2>
-            <input type="hidden" id="postre-id" />
-            <label for="nombre-postre">Nombre:</label>
-            <input type="text" id="nombre-postre" name="nombre" required><br>
-            <label for="descripcion-postre">Descripción:</label>
-            <input type="text" id="descripcion-postre" name="descripcion" required><br>
-            <label for="precio-postre">Precio:</label>
-            <input type="number" id="precio-postre" name="precio" required><br>
-            <label for="url-postre">URL de la Imagen:</label>
-            <input type="url" id="url-postre" name="url" placeholder="https://..."><br>
-            <button type="submit">Guardar</button>
-            <button type="button" id="btn-cancelar-postre">Cancelar</button> </form>
-        </dialog>
+    <!-- Modal para agregar/editar bebidas -->
+    <dialog id="modal-editar">
+      <form id="form-editar">
+        <h2>Editar Bebida</h2>
+        <input type="hidden" id="bebida-id" />
 
-  <script type="module" src="js/adminMenu.js"></script>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" name="descripcion" required><br>
+
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" required><br>
+
+        <label for="url">URL de la Imagen:</label>
+        <input type="url" id="url" name="url" placeholder="https://..."><br>
+
+        <button type="submit">Guardar</button>
+        <button type="button" onclick="cerrarModalBebida()">Cancelar</button>
+      </form>
+    </dialog>
+
+    <!-- Sección de Comidas -->
+    <br><h3 class="nombre-subtitulo">Menú de Comidas🍽️</h3><br>
+
+    <!-- Sección de Postres -->
+    <br><h3 class="nombre-subtitulo">Menú de Postres 🍰</h3><br>
+    <div class="tabla-menu">
+      <div class="tabla-scroll-container">
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-postres">
+            <!-- Aquí se cargarán los postres desde Firebase -->
+          </tbody>
+        </table>
+      </div>
+      <button class="btn-agregar-postre" id="btn-agregar-postre">Agregar Postre</button>
+    </div>
+
+    <!-- Modal para agregar/editar postres -->
+    <dialog id="modal-editar-postre">
+      <form id="form-editar-postre">
+        <h2>Editar Postre</h2>
+        <input type="hidden" id="postre-id" />
+        <label for="nombre-postre">Nombre:</label>
+        <input type="text" id="nombre-postre" name="nombre" required><br>
+        <label for="descripcion-postre">Descripción:</label>
+        <input type="text" id="descripcion-postre" name="descripcion" required><br>
+        <label for="precio-postre">Precio:</label>
+        <input type="number" id="precio-postre" name="precio" required><br>
+        <label for="url-postre">URL de la Imagen:</label>
+        <input type="url" id="url-postre" name="url" placeholder="https://..."><br>
+        <button type="submit">Guardar</button>
+        <button type="button" onclick="cerrarModalPostre()">Cancelar</button>
+      </form>
+    </dialog>
+
+    <script type="module" src="js/adminMenu.js"></script>
 
   </main>
 
