@@ -69,7 +69,38 @@
       <br><h3>Menú de Comidas</h3><br>
 
       <br><h3>Menú de Postres</h3><br>
+       <table border="1">
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-postres">
+          <!-- Aquí se cargarán los postres desde Firebase -->
+        </tbody>
+        </table>
 
+      <button id="btn-agregar-postre">Agregar Postre</button>
+      <!-- Modal para agregar/editar postres -->
+       <dialog id="modal-editar-postre">
+          <form id="form-editar-postre">
+            <h2>Editar Postre</h2>
+            <input type="hidden" id="postre-id" />
+            <label for="nombre-postre">Nombre:</label>
+            <input type="text" id="nombre-postre" name="nombre" required><br>
+            <label for="descripcion-postre">Descripción:</label>
+            <input type="text" id="descripcion-postre" name="descripcion" required><br>
+            <label for="precio-postre">Precio:</label>
+            <input type="number" id="precio-postre" name="precio" required><br>
+            <label for="url-postre">URL de la Imagen:</label>
+            <input type="url" id="url-postre" name="url" placeholder="https://..."><br>
+            <button type="submit">Guardar</button>
+            <button type="button" id="btn-cancelar-postre">Cancelar</button> </form>
+        </dialog>
 
   <script type="module" src="js/adminMenu.js"></script>
 
