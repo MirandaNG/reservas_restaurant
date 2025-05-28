@@ -397,3 +397,35 @@ export async function agregarBebida(datos) {
 }
 
 // -----------------
+
+// FUNCIONES COMIDAS
+
+export async function obtenerComidas() {
+  const comidasCollection = collection(db, "comidas");
+  const consulta = await getDocs(comidasCollection);
+  const comidas = consulta.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+  return comidas;
+}
+
+export async function actualizarComida(id, nuevosDatos) {
+  const comidaRef = doc(db, "comidas", id);
+  await updateDoc(comidaRef, nuevosDatos);
+}
+
+export async function agregarComida(datos) {
+  const comidasCollection = collection(db, "comidas");
+  await addDoc(comidasCollection, datos);
+}
+
+export async function subirImagenComida(file) {
+  const storage = getStorage();
+  const storageRef = ref(storage, `comidas/${file.name}`);
+  const snapshot = await uploadBytes(storageRef, file);
+  const url = await getDownloadURL(snapshot.ref);
+  return url;
+}
+
+// -----------------

@@ -71,6 +71,48 @@
 
     <!-- Sección de Comidas -->
     <br><h3 class="nombre-subtitulo">Menú de Comidas🍽️</h3><br>
+    <div class="tabla-menu">
+  <div class="tabla-scroll-container">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-comidas">
+        <!-- Aquí se cargarán las comidas desde Firebase -->
+      </tbody>
+    </table>
+  </div>
+  <button class="btn-agregar-comida" id="btn-agregar-comida">Agregar Comida</button>
+</div>
+
+<!-- Modal para agregar/editar comidas -->
+<dialog id="modal-editar-comida">
+  <form id="form-editar-comida">
+    <h2>Editar Comida</h2>
+    <input type="hidden" id="comida-id" />
+
+    <label for="nombre-comida">Nombre:</label>
+    <input type="text" id="nombre-comida" name="nombre" required><br>
+
+    <label for="descripcion-comida">Descripción:</label>
+    <input type="text" id="descripcion-comida" name="descripcion" required><br>
+
+    <label for="precio-comida">Precio:</label>
+    <input type="number" id="precio-comida" name="precio" required><br>
+
+    <label for="url-comida">URL de la Imagen:</label>
+    <input type="url" id="url-comida" name="url" placeholder="https://..."><br>
+
+    <button type="submit">Guardar</button>
+    <button type="button" onclick="cerrarModalComida()">Cancelar</button>
+  </form>
+</dialog>
 
     <!-- Sección de Postres -->
     <br><h3 class="nombre-subtitulo">Menú de Postres 🍰</h3><br>

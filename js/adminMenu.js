@@ -7,21 +7,15 @@ import {
   updateDoc,
   addDoc
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-//bebidas
+
+// FUNCIONES BEBIDAS
+
 const tabla = document.getElementById("tabla-bebidas");
 const btnAgregar = document.getElementById("btn-agregar");
 const modal = document.getElementById("modal-editar");
 const form = document.getElementById("form-editar");
 const inputUrl = document.getElementById("url");
 
-//postres
-const tablaPostres = document.getElementById("tabla-postres");
-const btnAgregarPostre = document.getElementById("btn-agregar-postre");
-const modalPostre = document.getElementById("modal-editar-postre");
-const formPostre = document.getElementById("form-editar-postre");
-const inputUrlPostre = document.getElementById("url-postre");
-
-let postreActualId = null;
 let bebidaActualId = null;
 
 // Mostrar bebidas
@@ -70,6 +64,63 @@ async function cargarBebidas() {
   }
 }
 
+// Guardar cambios en bebidas
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const nombre = form.nombre.value;
+  const precio = parseFloat(form.precio.value);
+  const descripcion = form.descripcion.value;
+  const url = inputUrl.value;
+
+  try {
+    if (bebidaActualId) {
+      // === EDITAR ===
+      const bebidaRef = doc(db, "bebidas", bebidaActualId);
+      await updateDoc(bebidaRef, { nombre, precio, descripcion, url });
+    } else {
+      // === AGREGAR NUEVA ===
+      await addDoc(collection(db, "bebidas"), { nombre, precio, descripcion, url });
+    }
+
+    modal.close();
+    await cargarBebidas();
+  } catch (error) {
+    console.error("Error al guardar bebida:", error);
+  }
+});
+
+// Agregar nueva bebida
+btnAgregar.addEventListener("click", () => {
+  bebidaActualId = null;
+  form.reset();
+  modal.showModal();
+});
+
+// Funciones globales para cerrar modales
+window.cerrarModalBebida = function() {
+  document.getElementById("modal-editar").close();
+  document.getElementById("form-editar").reset();
+  bebidaActualId = null;
+};
+
+// Cargar al inicio
+cargarBebidas();
+
+// -----------------
+
+
+
+// FUNCIONES POSTRES
+
+const tablaPostres = document.getElementById("tabla-postres");
+const btnAgregarPostre = document.getElementById("btn-agregar-postre");
+const modalPostre = document.getElementById("modal-editar-postre");
+const formPostre = document.getElementById("form-editar-postre");
+const inputUrlPostre = document.getElementById("url-postre");
+
+let postreActualId = null;
+
 // Mostrar postres
 async function cargarPostres() {
   tabla.innerHTML = "";
@@ -115,32 +166,6 @@ async function cargarPostres() {
   }
 }
 
-// Guardar cambios
-form.addEventListener("submit", async e => {
-  e.preventDefault();
-
-  const nombre = form.nombre.value;
-  const precio = parseFloat(form.precio.value);
-  const descripcion = form.descripcion.value;
-  const url = inputUrl.value;
-
-  try {
-    if (bebidaActualId) {
-      // === EDITAR ===
-      const bebidaRef = doc(db, "bebidas", bebidaActualId);
-      await updateDoc(bebidaRef, { nombre, precio, descripcion, url });
-    } else {
-      // === AGREGAR NUEVA ===
-      await addDoc(collection(db, "bebidas"), { nombre, precio, descripcion, url });
-    }
-
-    modal.close();
-    await cargarBebidas();
-  } catch (error) {
-    console.error("Error al guardar bebida:", error);
-  }
-});
-
 // Guardar cambios en postres
 formPostre.addEventListener("submit", async e => {
   e.preventDefault();
@@ -167,26 +192,14 @@ formPostre.addEventListener("submit", async e => {
   }
 });
 
-// Agregar nueva bebida
-btnAgregar.addEventListener("click", () => {
-  bebidaActualId = null;
-  form.reset();
-  modal.showModal();
-});
-
 // Agregar nuevo postre
 btnAgregarPostre.addEventListener("click", () => {
   postreActualId = null;
   formPostre.reset();
   modalPostre.showModal();
 });
-// Funciones globales para cerrar modales
-window.cerrarModalBebida = function() {
-  document.getElementById("modal-editar").close();
-  document.getElementById("form-editar").reset();
-  bebidaActualId = null;
-};
 
+// Funciones globales para cerrar modales
 window.cerrarModalPostre = function() {
   document.getElementById("modal-editar-postre").close();
   document.getElementById("form-editar-postre").reset();
@@ -194,5 +207,107 @@ window.cerrarModalPostre = function() {
 };
 
 // Cargar al inicio
-cargarBebidas();
 cargarPostres();
+
+// -----------------
+
+
+
+// FUNCIONES COMIDAS
+
+const tablaComidas = document.getElementById("tabla-comidas");
+const btnAgregarComida = document.getElementById("btn-agregar-comida");
+const modalComida = document.getElementById("modal-editar-comida");
+const formComida = document.getElementById("form-editar-comida");
+const inputUrlComida = document.getElementById("url-comida");
+
+let comidaActualId = null;
+
+// Mostrar comidas
+async function cargarComidas() {
+  tablaComidas.innerHTML = "";
+
+  try {
+    const comidasSnap = await getDocs(collection(db, "comidas"));
+
+    comidasSnap.forEach(docSnap => {
+      const comida = docSnap.data();
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td><img src="${comida.url || ''}" width="50" height="50" /></td>
+        <td>${comida.nombre}</td>
+        <td>${comida.descripcion}</td>
+        <td>$${comida.precio}</td>
+        <td><button data-id="${docSnap.id}" class="btn-editar-comida">Editar</button></td>
+      `;
+      tablaComidas.appendChild(fila);
+    });
+
+    // Reasignar eventos después de cargar
+    document.querySelectorAll(".btn-editar-comida").forEach(btn => {
+      btn.addEventListener("click", async e => {
+        comidaActualId = e.target.dataset.id;
+        const comidaDocSnap = await getDocs(collection(db, "comidas"));
+        const comidaDoc = comidaDocSnap.docs.find(d => d.id === comidaActualId);
+
+        if (!comidaDoc) {
+          alert("No se encontró la comida.");
+          return;
+        }
+
+        const comida = comidaDoc.data();
+        formComida.nombre.value = comida.nombre;
+        formComida.precio.value = comida.precio;
+        formComida.descripcion.value = comida.descripcion;
+        inputUrlComida.value = comida.url || "";
+        modalComida.showModal();
+      });
+    });
+
+  } catch (error) {
+    console.error("Error al cargar comidas:", error);
+  }
+}
+
+// Guardar cambios en comidas
+formComida.addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const nombre = formComida.nombre.value;
+  const precio = parseFloat(formComida.precio.value);
+  const descripcion = formComida.descripcion.value;
+  const url = inputUrlComida.value;
+
+  try {
+    if (comidaActualId) {
+      const comidaRef = doc(db, "comidas", comidaActualId);
+      await updateDoc(comidaRef, { nombre, precio, descripcion, url });
+    } else {
+      await addDoc(collection(db, "comidas"), { nombre, precio, descripcion, url });
+    }
+
+    modalComida.close();
+    await cargarComidas();
+  } catch (error) {
+    console.error("Error al guardar comida:", error);
+  }
+});
+
+// Agregar nueva comida
+btnAgregarComida.addEventListener("click", () => {
+  comidaActualId = null;
+  formComida.reset();
+  modalComida.showModal();
+});
+
+// Función global para cerrar modal de comida
+window.cerrarModalComida = function () {
+  modalComida.close();
+  formComida.reset();
+  comidaActualId = null;
+};
+
+// Cargar al inicio
+cargarComidas();
+
+// -----------------
