@@ -1,5 +1,5 @@
 import { db, storage } from "../js/firebaseConfig.js";
-import { addDoc, collection, where, query, getDocs, doc, updateDoc, getDoc} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { addDoc, collection, where, query, getDocs, doc, updateDoc, getDoc, deleteDoc} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
 //nota es importante instalar firebase en la raiz del proyecto
 //npm install firebase
@@ -240,12 +240,22 @@ export async function mostrarReservas()
               <td>${reserva.mesa}</td>
               <td>${reserva.fecha}</td>
               <td>${reserva.hora}</td>
-              <td><button class="btn-editar"onclick="abrirModal('${reserva.id}')">Editar</button></td>
+              <td><button class="btn-editar"onclick="abrirModal('${reserva.id}')">Editar</button>
+              <button class="btn-eliminar" onclick="eliminarReserva('${reserva.id}')">Eliminar</button></td>
             `;
           
             tabla.appendChild(fila);
         });
-
+window.eliminarReserva = async function(id) {
+    if (confirm("¿Estás seguro de eliminar esta reserva?")) {
+        try {
+            await deleteDoc(doc(db, "reservas", id));
+            mostrarReservas(); // Recarga la tabla
+        } catch (error) {
+            alert("Error al eliminar la reserva");
+        }
+    }
+};
         
     } catch (error) {
         alert('Error al mostrar la tabla');
@@ -339,6 +349,7 @@ export async function actualizarReserva()
   
       alert("Reserva actualizada con éxito.");
       cerrarModal();
+      
   
     } catch (error) {
       console.error("Error al actualizar la reserva:", error);

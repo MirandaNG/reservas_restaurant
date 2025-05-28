@@ -78,6 +78,8 @@ nav a.active {
 
 
 
+
+
 .buscador{
   max-width: 70%;
   margin-left: 17%; 
@@ -282,7 +284,7 @@ main {
 }
 
 /* Estilo del botón "Agregar" */
-.btn-agregar, .btn-agregar-bebida, .btn-agregar-postre{
+.btn-agregar, .btn-agregar-bebida, .btn-agregar-postre,.btn-agregar-comida{
   display: block;
   margin: 20px auto;
   padding: 10px 20px;
@@ -311,7 +313,7 @@ main {
 
 
 
-.btn-eliminar {
+.btn-eliminar, .btn-eliminar-postre, .btn-eliminar-comida {
   margin-right: 5px;
   padding: 5px 10px;
   color: white;
@@ -351,7 +353,7 @@ main {
   background-color: #a10000;
 }
 /* Botón editar - azul */
-.btn-editar, .btn-editar-postre {
+.btn-editar, .btn-editar-postre, .btn-editar-comida {
    margin-right: 5px;
   padding: 5px 10px;
   color: white;

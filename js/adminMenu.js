@@ -5,7 +5,8 @@ import {
   getDocs,
   doc,
   updateDoc,
-  addDoc
+  addDoc,
+  deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 // FUNCIONES BEBIDAS
@@ -33,7 +34,8 @@ async function cargarBebidas() {
         <td>${bebida.nombre}</td>
         <td>${bebida.descripcion}</td>
         <td>$${bebida.precio}</td>
-        <td><button data-id="${docSnap.id}" class="btn-editar">Editar</button></td>
+        <td><button data-id="${docSnap.id}" class="btn-editar">Editar</button>
+           <button data-id="${docSnap.id}" class="btn-eliminar">Eliminar</button></td>
       `;
       tabla.appendChild(fila);
     });
@@ -56,6 +58,16 @@ async function cargarBebidas() {
         form.descripcion.value = bebida.descripcion;
         inputUrl.value = bebida.url || "";
         modal.showModal();
+      });
+    });
+     // Evento eliminar
+    document.querySelectorAll(".btn-eliminar").forEach(btn => {
+      btn.addEventListener("click", async e => {
+        const id = e.target.dataset.id;
+        if (confirm("¿Estás seguro de eliminar esta bebida?")) {
+          await deleteDoc(doc(db, "bebidas", id));
+          await cargarBebidas();
+        }
       });
     });
 
@@ -123,7 +135,7 @@ let postreActualId = null;
 
 // Mostrar postres
 async function cargarPostres() {
-  tabla.innerHTML = "";
+  tablaPostres.innerHTML = "";
 
   try {
     const postresSnap = await getDocs(collection(db, "postres"));
@@ -136,7 +148,8 @@ async function cargarPostres() {
         <td>${postre.nombre}</td>
         <td>${postre.descripcion}</td>
         <td>$${postre.precio}</td>
-        <td><button data-id="${docSnap.id}" class="btn-editar-postre">Editar</button></td>
+        <td><button data-id="${docSnap.id}" class="btn-editar-postre">Editar</button>
+        <button data-id="${docSnap.id}" class="btn-eliminar-postre">Eliminar</button></td>
       `;
       tablaPostres.appendChild(fila);
     });
@@ -159,6 +172,16 @@ async function cargarPostres() {
         formPostre.descripcion.value = postre.descripcion;
         inputUrlPostre.value = postre.url || "";
         modalPostre.showModal();
+      });
+    });
+     // Evento eliminar postre
+     document.querySelectorAll(".btn-eliminar-postre").forEach(btn => {
+      btn.addEventListener("click", async e => {
+        const id = e.target.dataset.id;
+        if (confirm("¿Estás seguro de eliminar este postre?")) {
+          await deleteDoc(doc(db, "postres", id));
+          await cargarPostres();
+        }
       });
     });
   } catch (error) {
@@ -238,7 +261,8 @@ async function cargarComidas() {
         <td>${comida.nombre}</td>
         <td>${comida.descripcion}</td>
         <td>$${comida.precio}</td>
-        <td><button data-id="${docSnap.id}" class="btn-editar-comida">Editar</button></td>
+        <td><button data-id="${docSnap.id}" class="btn-editar-comida">Editar</button>
+        <button data-id="${docSnap.id}" class="btn-eliminar-comida">Eliminar</button></td>
       `;
       tablaComidas.appendChild(fila);
     });
@@ -261,6 +285,16 @@ async function cargarComidas() {
         formComida.descripcion.value = comida.descripcion;
         inputUrlComida.value = comida.url || "";
         modalComida.showModal();
+      });
+    });
+    // Evento eliminar comida
+    document.querySelectorAll(".btn-eliminar-comida").forEach(btn => {
+      btn.addEventListener("click", async e => {
+        const id = e.target.dataset.id;
+        if (confirm("¿Estás seguro de eliminar esta comida?")) {
+          await deleteDoc(doc(db, "comidas", id));
+          await cargarComidas();
+        }
       });
     });
 
