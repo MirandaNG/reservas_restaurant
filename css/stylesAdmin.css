@@ -366,3 +366,7 @@ main {
   background-color: #0c70d2;
 }
 
+#previewImage {
+  width: 100px;
+  margin-top: 5%;
+}
