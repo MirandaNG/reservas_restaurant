@@ -12,6 +12,9 @@ import {
   deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
+import { cerrarSesion } from "./funcionesFirebase.js";
+window.cerrarSesion = cerrarSesion;
+
 // Navegación
 document.querySelector('nav').addEventListener('click', function (e) {
   if (e.target.tagName === 'A') {
