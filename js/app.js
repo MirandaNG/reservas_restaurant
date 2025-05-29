@@ -26,3 +26,51 @@ function seleccionarTipoMesa(tipoMesa)
             break;
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Selecciona todos los carruseles dentro de las categorías del menú
+    const menuCarousels = document.querySelectorAll('.categoria-menu .carrusel-basico');
+
+    menuCarousels.forEach(carousel => {
+        const menuCardsContainer = carousel.querySelector('.menu-cards');
+        // El primer botón con la clase .carrusel-btn se asume que es "anterior"
+        const prevButton = carousel.querySelector('.carrusel-btn:first-of-type');
+        // El último botón con la clase .carrusel-btn se asume que es "siguiente"
+        const nextButton = carousel.querySelector('.carrusel-btn:last-of-type');
+
+        // Si alguno de los elementos esenciales no se encuentra, se omite este carrusel.
+        if (!menuCardsContainer || !prevButton || !nextButton) {
+            console.warn('Advertencia: La estructura del carrusel está incompleta para un elemento:', carousel);
+            return;
+        }
+
+        // Intenta obtener la primera tarjeta para calcular el ancho del desplazamiento
+        const firstCard = menuCardsContainer.querySelector('.menu-card');
+        if (!firstCard) {
+            // No hay tarjetas en este carrusel, no hay nada que desplazar.
+            return;
+        }
+
+        // Calcula cuánto se debe desplazar.
+        // Esto incluye el ancho de la tarjeta y su margen derecho.
+        const cardStyle = window.getComputedStyle(firstCard);
+        const cardMarginRight = parseFloat(cardStyle.marginRight);
+        const scrollAmount = firstCard.offsetWidth + cardMarginRight;
+
+        // Evento para el botón "anterior"
+        prevButton.addEventListener('click', () => {
+            menuCardsContainer.scrollBy({
+                left: -scrollAmount, // Desplaza hacia la izquierda
+                behavior: 'smooth'  // Desplazamiento suave
+            });
+        });
+
+        // Evento para el botón "siguiente"
+        nextButton.addEventListener('click', () => {
+            menuCardsContainer.scrollBy({
+                left: scrollAmount,  // Desplaza hacia la derecha
+                behavior: 'smooth'   // Desplazamiento suave
+            });
+        });
+    });
+});
