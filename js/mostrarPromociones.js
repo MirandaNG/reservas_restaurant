@@ -47,14 +47,14 @@ async function mostrarPromociones() {
 
     document.querySelector('.promociones-container').appendChild(carruselDiv);
 
-    configurarCarrusel(carruselDiv, 'promo-card');
+    configurarCarrusel(carruselDiv);
   } else {
     console.warn("No hay promociones disponibles");
   }
 }
 
-function configurarCarrusel(container, cardClass) {
-  const cards = container.querySelector(`.${cardClass}s`);
+function configurarCarrusel(container) {
+  const cards = container.querySelector('.promo-cards');
   const btnLeft = container.querySelector('.carrusel-btn:first-child');
   const btnRight = container.querySelector('.carrusel-btn:last-child');
 
