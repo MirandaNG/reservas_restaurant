@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar</title>
+    <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Kaisei+Opti&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Monomakh&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#conocenos">Conócenos</a>
+        <a href="index.html#reservar">Reservar</a>
+        <a href="index.html#promociones">Promociones</a>
+        <a href="index.html#menu">Menú</a>
+    </nav>
+    <section id="formulario">
+        <div class="formulario-container">
+            <h1>Iniciar sesion como Administrador</h1>
+            <div class="form-container">
+                <p>¡Bienvenido! Inicie sesion para comenzar</p>
+                <form>
+                    <div class="inputs-container">
+                        <label for="correo">Correo</label>
+                        <input type="text" id="correo" name="correo" required>
+                        <br>
+                        <label for="contrasena">Contraseña</label>
+                        <input type="password" id="contrasena" name="contrasena" required>
+                    </div>
+                    <div class="buttons-container">
+                        <br>
+                        <!--<input class="registrar-btn" type="button" value="Registrarse" onclick="location.href='registrar.html'">-->
+                        <input class="ingresar-btn" type="button" value="Ingresar" onclick="iniciarSesionAdmin()">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div>
+            <script type="module" src="js/login.js"></script>
+        </div>
+    </section>
+</body>
+</html>

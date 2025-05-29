@@ -1,4 +1,6 @@
-import { mostrarReservas, filtrarReservas, editarReserva, actualizarReserva, cerrarModal} from "./funcionesFirebase.js";
+import { mostrarReservas, filtrarReservas, editarReserva, actualizarReserva, cerrarModal, cerrarSesion} from "./funcionesFirebase.js";
+
+window.cerrarSesion = cerrarSesion;
 window.mostrarReservas = mostrarReservas;
 window.abrirModal = abrirModal;
 window.cerrarModal = cerrarModal;

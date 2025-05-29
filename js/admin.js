@@ -8,6 +8,9 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
+import { cerrarSesion } from "./funcionesFirebase.js";
+window.cerrarSesion = cerrarSesion;
+
 const links = document.querySelectorAll('nav a');
 const content = document.getElementById('content');
 

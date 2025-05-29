@@ -98,11 +98,55 @@ export async function iniciarSesion()
         const usuarioDoc = consultaUsuario.docs[0];
         alert("Bienvenido " + usuario);
         localStorage.setItem("usuarioId", usuarioDoc.id);
-        localStorage.setItem("nombreUsuario", usuario);
-        alert("ID del usuario guardado en localStorage: " + usuarioDoc.id);
+        localStorage.setItem("nombreUsuario", usuarioDoc.data().nombre);
+        //alert("ID del usuario guardado en localStorage: " + usuarioDoc.id);
         window.location.href = "reservar.html";
         return;
     }
+}
+
+export async function iniciarSesionAdmin()
+{
+    const correo = document.getElementById("correo").value.trim();
+    const contrasena = document.getElementById("contrasena").value.trim();
+
+    //la funcion trim elimina los espacios en blanco al principio y al final de la cadena
+    //validamos que los campos no esten vacios
+    //si alguno de los campos esta vacio se muestra un mensaje de alerta
+    if ( !correo|| !contrasena) {
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
+    
+    //buscamos coincidencias con el correo y contraseña
+    const adminCollection = collection(db, "admins");
+    const consulta = await query(adminCollection,
+        where("correo", "==", correo),
+        where("contrasena", "==", contrasena)
+    );
+
+    const consultaAdmin = await getDocs(consulta);
+
+    if(consultaAdmin.empty)
+    {
+        alert("Correo o contraseña incorrecta");  //si no encuentra coincidencias
+        return;
+    }
+    else
+    {
+        const adminDoc = consultaAdmin.docs[0];
+        alert("Bienvenido " + adminDoc.data().nombre);
+        localStorage.setItem("adminId", adminDoc.id);
+        //alert("ID del admin guardado en localStorage: " + adminDoc.id);
+        window.location.href = "admin.html";
+        return;
+    }
+}
+
+export async function cerrarSesion() {
+    localStorage.setItem("adminId", '');
+    localStorage.setItem("usuarioId", '');
+    window.location.href = "index.html";
 }
 
 export async function reservar()

@@ -1,5 +1,9 @@
+import { cerrarSesion } from "./funcionesFirebase.js";
+window.cerrarSesion = cerrarSesion;
+
 const links = document.querySelectorAll('nav a');
 const content = document.getElementById('content');
+
 
 document.querySelector('nav').addEventListener('click', function (e) {
   if (e.target.tagName === 'A') {

@@ -9,6 +9,9 @@ import {
   deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
+import { cerrarSesion } from "./funcionesFirebase.js";
+window.cerrarSesion = cerrarSesion;
+
 // FUNCIONES BEBIDAS
 
 const tabla = document.getElementById("tabla-bebidas");
