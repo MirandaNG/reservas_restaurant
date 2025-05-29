@@ -124,8 +124,8 @@ async function renderPromos() {
         <td><img src="${promo.url}" alt="Promo" class="promo-img" style="width: 100px;"></td>
         <td>${promo.descripcion}</td>
         <td>
-          <button onclick="openModal('${promo.url}', \`${promo.descripcion.replace(/`/g, '\\`')}\`, '${docSnap.id}')">Editar</button>
-          <button onclick="deletePromo('${docSnap.id}')">Eliminar</button>
+          <button onclick="openModal('${promo.url}', \`${promo.descripcion.replace(/`/g, '\\`')}\`, '${docSnap.id}')" class="btn-editar">Editar</button>
+          <button onclick="deletePromo('${docSnap.id}')" class="btn-eliminar">Eliminar</button>
         </td>
       `;
       tbody.appendChild(fila);
