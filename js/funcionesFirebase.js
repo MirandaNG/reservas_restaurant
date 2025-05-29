@@ -488,3 +488,37 @@ export async function subirImagenComida(file) {
 }
 
 // -----------------
+
+//  FUNCIONES DE PROMOCIONES
+
+// Obtener todas las promociones
+export async function obtenerPromociones() {
+  const promocionesCollection = collection(db, "promociones");
+  const consulta = await getDocs(promocionesCollection);
+  const promociones = consulta.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+  return promociones;
+}
+
+// Subir imagen de promoción
+export async function subirImagenPromocion(file) {
+  const storage = getStorage();
+  const storageRef = ref(storage, `promociones/${file.name}`);
+  const snapshot = await uploadBytes(storageRef, file);
+  const url = await getDownloadURL(snapshot.ref);
+  return url;
+}
+
+// Agregar nueva promoción
+export async function agregarPromocion(datos) {
+  const promocionesCollection = collection(db, "promociones");
+  await addDoc(promocionesCollection, datos);
+}
+
+// Actualizar una promoción existente
+export async function actualizarPromocion(id, nuevosDatos) {
+  const promoRef = doc(db, "promociones", id);
+  await updateDoc(promoRef, nuevosDatos);
+}

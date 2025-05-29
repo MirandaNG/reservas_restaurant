@@ -1,16 +1,26 @@
+import { db } from "./firebaseConfig.js";
+import {
+  subirImagenPromocion,
+  agregarPromocion,
+  actualizarPromocion
+} from './funcionesFirebase.js';
+
+import {
+  collection,
+  getDocs,
+  doc,
+  deleteDoc
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
 import { cerrarSesion } from "./funcionesFirebase.js";
 window.cerrarSesion = cerrarSesion;
 
-const links = document.querySelectorAll('nav a');
-const content = document.getElementById('content');
-
-
+// Navegación
 document.querySelector('nav').addEventListener('click', function (e) {
   if (e.target.tagName === 'A') {
     e.preventDefault();
     const section = e.target.getAttribute('data-section');
 
-    // Redirección según el nombre de sección
     switch (section) {
       case 'Administrador':
         window.location.href = 'admin.html';
@@ -28,95 +38,112 @@ document.querySelector('nav').addEventListener('click', function (e) {
   }
 });
 
-// Elementos del DOM
-const modal = document.getElementById('promoModal');
-const previewImage = document.getElementById('previewImage');
-const promoImageInput = document.getElementById('promoImage');
-const promoDescInput = document.getElementById('promoDesc');
-const tabla = document.querySelector('#tabla-promociones tbody');
+// Elementos DOM adaptados a tu HTML original
+const tabla = document.getElementById("tabla-promociones");
+const btnAgregar = document.querySelector("button.btn.btn-primary"); // Botón "Agregar"
+const modal = document.getElementById("promoModal");
+const previewImage = document.getElementById("previewImage");
+const promoUrlInput = document.getElementById("promoUrl");
+const promoDescInput = document.getElementById("promoDesc");
 
-let editIndex = null;
+let promoActualId = null;
 
-// Funciones
-function openModal(img = '', desc = '', index = null) {
-  document.getElementById('modalTitle').textContent = index !== null ? 'Editar Promoción' : 'Agregar Promoción';
+// Abrir modal
+function openModal(img = '', desc = '', id = null) {
+  document.getElementById('modalTitle').textContent = id ? 'Editar Promoción' : 'Agregar Promoción';
   previewImage.src = img || '';
-  promoImageInput.value = '';
+  promoUrlInput.value = img || '';
   promoDescInput.value = desc || '';
-  editIndex = index;
+  promoActualId = id;
   modal.style.display = 'flex';
 }
 
+// Cerrar modal
 function closeModal() {
   modal.style.display = 'none';
-  promoImageInput.value = '';
+  promoUrlInput.value = '';
   promoDescInput.value = '';
   previewImage.src = '';
-  editIndex = null;
+  promoActualId = null;
 }
 
-function preview(event) {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      previewImage.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
+// Previsualizar imagen
+function previewFromUrl() {
+  const url = promoUrlInput.value;
+  previewImage.src = url;
+}
+
+// Guardar o editar promoción
+async function savePromo() {
+  const descripcion = promoDescInput.value;
+  const url = promoUrlInput.value;
+
+  if (!descripcion || !url) {
+    alert("Faltan campos");
+    return;
+  }
+
+  try {
+    const datos = { descripcion, url };
+
+    if (promoActualId) {
+      await actualizarPromocion(promoActualId, datos);
+    } else {
+      await agregarPromocion(datos);
+    }
+
+    closeModal();
+    await renderPromos();
+  } catch (error) {
+    console.error("Error al guardar promoción:", error);
+    alert("Ocurrió un error al guardar la promoción.");
   }
 }
 
-function savePromo() {
-  const promos = JSON.parse(localStorage.getItem('promociones')) || [];
-  const img = previewImage.src;
-  const desc = promoDescInput.value;
+// Eliminar promoción
+async function deletePromo(id) {
+  if (!confirm("¿Estás seguro de eliminar esta promoción?")) return;
 
-  const nuevaPromo = { imagen: img, descripcion: desc };
-
-  if (editIndex !== null) {
-    promos[editIndex] = nuevaPromo;
-  } else {
-    promos.push(nuevaPromo);
-  }
-
-  localStorage.setItem('promociones', JSON.stringify(promos));
-  renderPromos();
-  closeModal();
-}
-
-function deletePromo(index) {
-  const promos = JSON.parse(localStorage.getItem('promociones')) || [];
-  if (confirm('¿Estás seguro de eliminar esta promoción?')) {
-    promos.splice(index, 1);
-    localStorage.setItem('promociones', JSON.stringify(promos));
-    renderPromos();
+  try {
+    await deleteDoc(doc(db, "promociones", id));
+    await renderPromos();
+  } catch (error) {
+    console.error("Error al eliminar promoción:", error);
   }
 }
 
-function renderPromos() {
-  const promos = JSON.parse(localStorage.getItem('promociones')) || [];
-  tabla.innerHTML = '';
+// Mostrar promociones
+async function renderPromos() {
+  const tbody = tabla.querySelector("tbody");
+  tbody.innerHTML = "";
 
-  promos.forEach((promo, index) => {
-    const fila = document.createElement('tr');
-    fila.innerHTML = `
-      <td><img src="${promo.imagen}" alt="Promo" class="promo-img" style="width: 100px;"></td>
-      <td>${promo.descripcion}</td>
-      <td>
-        <button onclick="openModal('${promo.imagen}', '${promo.descripcion}', ${index})">Editar</button>
-        <button onclick="deletePromo(${index})">Eliminar</button>
-      </td>
-    `;
-    tabla.appendChild(fila);
-  });
+  try {
+    const snapshot = await getDocs(collection(db, "promociones"));
+
+    snapshot.forEach(docSnap => {
+      const promo = docSnap.data();
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td><img src="${promo.url}" alt="Promo" class="promo-img" style="width: 100px;"></td>
+        <td>${promo.descripcion}</td>
+        <td>
+          <button onclick="openModal('${promo.url}', \`${promo.descripcion.replace(/`/g, '\\`')}\`, '${docSnap.id}')" class="btn-editar">Editar</button>
+          <button onclick="deletePromo('${docSnap.id}')" class="btn-eliminar">Eliminar</button>
+        </td>
+      `;
+      tbody.appendChild(fila);
+    });
+  } catch (error) {
+    console.error("Error al cargar promociones:", error);
+  }
 }
 
-// Exponer funciones al HTML globalmente
+// Exponer funciones globalmente
 window.openModal = openModal;
 window.closeModal = closeModal;
 window.savePromo = savePromo;
-window.preview = preview;
+window.previewFromUrl = previewFromUrl;
 window.deletePromo = deletePromo;
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', renderPromos);
+// Cargar promociones al inicio
+renderPromos();
