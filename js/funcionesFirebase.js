@@ -98,6 +98,7 @@ export async function iniciarSesion()
         const usuarioDoc = consultaUsuario.docs[0];
         alert("Bienvenido " + usuario);
         localStorage.setItem("usuarioId", usuarioDoc.id);
+        localStorage.setItem("nombreUsuario", usuario);
         alert("ID del usuario guardado en localStorage: " + usuarioDoc.id);
         window.location.href = "reservar.html";
         return;
@@ -106,11 +107,14 @@ export async function iniciarSesion()
 
 export async function reservar()
 {
-    const nombre = document.getElementById("nombre").value;
     const fecha = document.getElementById("fecha").value;
     const hora = document.getElementById("hora").value;
     const mesa = document.getElementById("mesa").value;
     const id = localStorage.getItem("usuarioId");
+
+
+
+    const nombre = localStorage.getItem("nombreUsuario");
 
     if (!nombre || !fecha || !hora || !mesa) 
     {
