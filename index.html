@@ -10,14 +10,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Kaisei+Opti&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Monomakh&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <nav class="navbar">
-    <a href="#inicio">Inicio</a>
-    <a href="#conocenos">Conócenos</a>
-    <a href="#reservar">Reservar</a>
-    <a href="#promociones">Promociones</a>
-    <a href="#menu">Menú</a>
-  </nav>
+<button class="hamburger" id="hamburger-menu" aria-label="Abrir menú">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+<nav class="navbar">
+  <a href="#inicio">Inicio</a>
+  <a href="#conocenos">Conócenos</a>
+  <a href="#reservar">Reservar</a>
+  <a href="#promociones">Promociones</a>
+  <a href="#menu">Menú</a>
+</nav>
 
   <section id="inicio">
     <div class="inicio-content">
@@ -124,11 +128,8 @@
   <script type="module" src="js/mostrarPromociones.js"></script>
   <script type="module" src="js/mostrarMenuClientes.js"></script>
   <script src="js/comentarios.js"></script>
+    <script src="js/menuHamburguesa.js"></script>
 
-  <section>
-    <div style="text-align: center; padding: 20px;">
-      <a href="loginAdmin.html">Ir al panel de administrador</a>
-    </div>
-  </section>
+ 
 </body>
 </html>

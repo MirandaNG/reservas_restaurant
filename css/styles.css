@@ -399,7 +399,7 @@ nav a.active,
 #comentario-form input,
 #comentario-form textarea {
   padding: 10px;
-  font-size: 16px;
+  font-size: 20px;
   width: 100%;
 }
 
@@ -544,5 +544,378 @@ nav a.active,
   .menu-card {
     min-width: 140px;
     width: 140px;
+  }
+}
+
+/* ==================== MENÚ HAMBURGUESA RESPONSIVO ==================== */
+.hamburger {
+  display: none;
+  position: fixed !important;
+  top: 15px !important;
+  left: 15px !important;
+  z-index: 3000 !important;
+  width: 40px;
+  height: 40px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 30px;
+  height: 4px;
+  margin: 6px auto;
+  background: #e85d04 !important;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+@media (max-width: 900px) {
+  /* Mostrar el botón hamburguesa solo en móvil */
+  .hamburger {
+    display: block !important;
+  }
+
+  /* NAVBAR: menú lateral oculto por defecto, visible con .activo */
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed !important;
+    left: -100vw;
+    top: 0;
+    width: 70vw;
+    height: 100vh;
+    background: rgba(33, 22, 19, 0.97);
+    transition: left 0.3s;
+    z-index: 2000;
+    gap: 0;
+    padding-top: 60px;
+    font-size: 1.2em;
+  }
+  .navbar.activo {
+    left: 0;
+  }
+  .navbar a {
+    font-size: 1.3em;
+    padding: 18px 0;
+    width: 100%;
+    text-align: left;
+    margin-left: 20px;
+  }
+
+  /* PORTADA: centrar y quitar márgenes */
+  .inicio-content,
+  .inicio-content > *,
+  .inicio-content * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin: 0 auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .inicio-content {
+    display: flex;
+    flex-direction: column !important;
+    align-items: stretch;
+    justify-content: flex-start;
+    font-size: 1.3em; /* Aumenta el tamaño de fuente al 130% */
+    background-image: url('../img/PlatilloFondo.jpg');
+    background-size: cover;
+  }
+  .logo-titulo {
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100vw;
+    max-width: 100vw;
+    overflow: hidden;
+    margin: 0 !important;
+    margin-top: 80px;
+  }
+  .logo-platillo {
+    margin: 0 auto 8px auto !important;
+    width: 60vw !important;
+    max-width: 120px;
+    height: auto;
+    display: block !important;
+  }
+  .logo-titulo h1 {
+    font-size: 8vw;
+    text-align: center;
+    max-width: 90vw;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .slogan {
+    margin: 0 !important;
+    text-align: center !important;
+    width: 100vw !important;
+    order: 2;
+  }
+
+  /* Cards de menú y promociones en columna */
+  .menu-cards, .promo-cards {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100vw !important;
+    gap: 10px !important;
+    overflow-x: auto;
+  }
+  .menu-card, .promo-card, .bebida-card, .postre-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+  }
+
+  /* Formularios y comentarios ocupan todo el ancho */
+  #comentarios, .comentarios-container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 0 24px 0 !important;
+    font-size: 0.7em !important;
+  }
+  #comentario-form input[type="text"],
+  #comentario-form button {
+    padding: 6px 12px !important;
+  }
+  #comentario-form button {
+    padding: 8px 16px !important;
+  }
+
+  /* Conócenos en columna */
+  .conocenos-container {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    height: auto !important;
+    padding: 24px 0 !important;
+    margin-bottom: 50% !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+   .conocenos-container .img-derecha {
+    width: 100vw !important;
+    max-width: 90vw !important;
+    min-width: 0 !important;
+    height: auto !important;
+   
+    display: block !important;
+    object-fit: contain !important;
+    border-radius: 16px !important;
+    box-sizing: border-box !important;
+    order: 4;
+    margin-top: 0 !important;
+
+  }
+  .text-container {
+    width: 100% !important;
+    margin-left: 0 !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+  }
+  .ubicanos-texto {
+    width: 100% !important;
+    margin: 0 0 16px 0 !important;
+  }
+  .ubicanos-texto p {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 auto 16px auto !important;
+    padding: 0 5vw !important;
+    text-align: center !important;
+    display: block !important;
+  }
+  
+   #map {
+    width: 100vw !important;
+    max-width: 90vw !important;
+    min-width: 0 !important;
+    height: 60vw !important;
+    min-height: 220px !important;
+    max-height: 400px !important;
+    border-radius: 16px !important;
+    
+    display: block !important;
+    box-sizing: border-box !important;
+  }
+
+
+  /* SECCIÓN PROMOCIONES EN FILA */
+  .carrusel-basico {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 16px !important;
+    width: 100vw !important;
+    align-items: stretch !important;
+  }
+  .promo-cards {
+    flex-direction: row !important;
+    gap: 16px !important;
+    width: max-content !important;
+  }
+  .promo-card {
+    width: 48vw !important;
+    min-width: 200px !important;
+    max-width: 90vw !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .promo-card img {
+    width: 100% !important;
+    height: 40vw !important;
+    max-height: 300px !important;
+    object-fit: contain !important;
+  }
+
+  /* ORDEN VISUAL PORTADA Y CONÓCENOS EN MÓVIL */
+  .logo-titulo { order: 1; margin-bottom: 0 !important; }
+  .slogan { order: 2; margin-bottom: 0 !important; }
+  #conocenos { order: 3; }
+  .conocenos-container .img-derecha { order: 4; }
+
+  /* HTML y BODY: evitar scroll horizontal */
+  html, body {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  * {
+    box-sizing: border-box !important;
+    max-width: 100vw !important;
+  }
+  img {
+    max-width: 100vw !important;
+    height: auto !important;
+    display: block;
+  }
+  
+}
+@media (max-width: 900px) {
+  /* Desde la sección reservar, todo en columna, bien separado */
+
+  #reservar,
+  #reservar > *,
+  #promociones,
+  #promociones > *,
+  #menu,
+  #menu > *,
+  #comentarios,
+  #comentarios > *,
+  .Secciones-menu,
+  .Secciones-menu > *,
+  .promociones-container,
+  .promociones-container > *,
+  .menu-container,
+  .menu-container > * {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100vw !important;
+    box-sizing: border-box !important;
+    margin: 0 auto 32px auto !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  #reservar {
+    padding-top: 32px !important;
+    padding-bottom: 48px !important;
+    margin-bottom: 32px !important;
+  }
+  #reservar .Subtitulo,
+  #promociones .Subtitulo,
+  #menu .Subtitulo {
+    margin-top: 0 !important;
+    margin-bottom: 16px !important;
+    text-align: center !important;
+    width: 100vw !important;
+  }
+  .reservar-texto,
+  .promociones-texto {
+    margin-bottom: 16px !important;
+    width: 100vw !important;
+    text-align: center !important;
+  }
+  .reservar-texto p,
+  .promociones-texto p {
+    margin: 0 !important;
+    padding: 0 8vw !important;
+    width: 100vw !important;
+    font-size: 1.1em !important;
+    text-align: center !important;
+  }
+  .mesa-options {
+    gap: 32px !important;
+    margin-bottom: 32px !important;
+    width: 70vw !important;
+    ;
+  }
+  .mesa {
+    width: 70vw !important;
+    max-width: 290px !important;
+    margin: 0 auto 32px auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+ 
+  .mesa img {
+    width: 25vw !important;
+    max-width: 70vw !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+    margin: 0 auto 8px auto !important;
+  }
+
+  .mesa span {
+    font-size: 1.6em !important;
+    text-align: center !important;
+  }
+
+  /* Carruseles y cards en columna */
+  .carrusel-basico,
+  .promo-cards,
+  .menu-cards,
+  .bebida-cards,
+  .postre-cards {
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100vw !important;
+    gap: 10px !important;
+    overflow-x: auto;
+  }
+  .promo-card,
+  .menu-card,
+  .bebida-card,
+  .postre-card {
+    width: 95vw !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    margin: 0 auto 24px auto !important;
+  }
+
+  /* Evitar scroll horizontal */
+  html, body {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  * {
+    box-sizing: border-box !important;
+    max-width: 100vw !important;
+  }
+  img {
+    max-width: 100vw !important;
+    height: auto !important;
+    display: block;
   }
 }
