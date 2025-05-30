@@ -13,6 +13,12 @@ async function mostrarPromociones() {
   const querySnapshot = await getDocs(collection(db, "promociones"));
 
   if (querySnapshot.size > 0) {
+    const promociones = [];
+
+    querySnapshot.forEach(doc => {
+      promociones.push(doc.data());
+    });
+
     const carruselDiv = document.createElement('div');
     carruselDiv.className = 'carrusel-basico';
 
@@ -24,20 +30,6 @@ async function mostrarPromociones() {
     const cardsContainer = document.createElement('div');
     cardsContainer.className = 'promo-cards';
 
-    querySnapshot.forEach(doc => {
-      const promo = doc.data();
-
-      const card = document.createElement('div');
-      card.className = 'promo-card';
-
-      card.innerHTML = `
-        <img src="${promo.url || 'img/placeholder.jpg'}" alt="Promo" onerror="this.src='img/placeholder.jpg'">
-        <p>${promo.descripcion}</p>
-      `;
-
-      cardsContainer.appendChild(card);
-    });
-
     carruselDiv.appendChild(cardsContainer);
 
     const btnRight = document.createElement('button');
@@ -47,29 +39,49 @@ async function mostrarPromociones() {
 
     document.querySelector('.promociones-container').appendChild(carruselDiv);
 
-    configurarCarrusel(carruselDiv);
+    configurarCarruselDinamico(carruselDiv, promociones);
   } else {
     console.warn("No hay promociones disponibles");
   }
 }
 
-function configurarCarrusel(container) {
-  const cards = container.querySelector('.promo-cards');
+function configurarCarruselDinamico(container, promociones) {
+  const cardsContainer = container.querySelector('.promo-cards');
   const btnLeft = container.querySelector('.carrusel-btn:first-child');
   const btnRight = container.querySelector('.carrusel-btn:last-child');
+  
+  let index = 0;
+  const visibleCount = 3;
 
-  let scrollAmount = 0;
-  const cardWidth = 300; // ajusta si usas otro tamaño
-  const visibleCards = 3;
+  function renderCards(startIndex) {
+    cardsContainer.innerHTML = ''; // Limpiar anteriores
+
+    for (let i = 0; i < visibleCount; i++) {
+      const currentIndex = (startIndex + i) % promociones.length;
+      const promo = promociones[currentIndex];
+
+      const card = document.createElement('div');
+      card.className = 'promo-card';
+      card.innerHTML = `
+        <img src="${promo.url || 'img/placeholder.jpg'}" alt="Promo" onerror="this.src='img/placeholder.jpg'">
+        <p>${promo.descripcion}</p>
+      `;
+
+      cardsContainer.appendChild(card);
+    }
+  }
+
+  // Eventos
+  btnRight.addEventListener('click', () => {
+    index = (index + 1) % promociones.length;
+    renderCards(index);
+  });
 
   btnLeft.addEventListener('click', () => {
-    scrollAmount = Math.max(scrollAmount - cardWidth, 0);
-    cards.style.transform = `translateX(-${scrollAmount}px)`;
+    index = (index - 1 + promociones.length) % promociones.length;
+    renderCards(index);
   });
 
-  btnRight.addEventListener('click', () => {
-    const maxScroll = (cards.children.length - visibleCards) * cardWidth;
-    scrollAmount = Math.min(scrollAmount + cardWidth, maxScroll);
-    cards.style.transform = `translateX(-${scrollAmount}px)`;
-  });
+  // Render inicial
+  renderCards(index);
 }
