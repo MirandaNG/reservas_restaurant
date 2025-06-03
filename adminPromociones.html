@@ -22,9 +22,10 @@
 </nav>
 
   <main id="content">
-    <h1>Promociones</h1>
+    <h1 class="nombre-seccion">Promociones</h1>
 
-    <div class="container">
+    <div class="tabla-promociones">
+      <div class="tabla-scroll-container">
       <table id="tabla-promociones">
         <thead>
             <tr>
@@ -34,10 +35,11 @@
             </tr>
         </thead>
         <tbody></tbody>
-      </table>
-
-    <button class="btn btn-primary" onclick="openModal()">Agregar</button>
-
+         </table>
+         
+         </div>
+      <button class="btn-agregar" onclick="openModal()">Agregar</button>
+  </div>
     <!-- Modal -->
     <div class="modal" id="promoModal">
     <div class="modal-contenido">
@@ -46,14 +48,14 @@
         <img id="previewImage" src="" alt="Vista previa">
         
         <label for="promoUrl">Cambiar Imagen</label>
-        <input type="text" id="promoUrl" placeholder="URL de la imagen" oninput="previewFromUrl()" />
+        <input class="input-ancho"type="text" id="promoUrl" placeholder="URL de la imagen" oninput="previewFromUrl()" />
         
         <label for="promoDesc">Descripción:</label>
-        <textarea id="promoDesc"></textarea>
+        <textarea class= "input-ancho"id="promoDesc"></textarea>
         
         <div class="modal-buttons">
-        <button class="btn" onclick="closeModal()">Cancelar</button>
-        <button class="btn btn-primary" onclick="savePromo()">Guardar</button>
+        <button class="btn-cancelar" onclick="closeModal()">Cancelar</button>
+        <button class="btn-guardar" onclick="savePromo()">Guardar</button>
         </div>
     </div>
     </div>

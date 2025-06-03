@@ -43,15 +43,13 @@ nav a.active {
   color: #e85d04;
 }
 
-.tabla-admin, .tabla-reservas, .tabla-menu{
- 
-  
+.tabla-admin, .tabla-reservas, .tabla-menu, .tabla-promociones{
   flex-direction: column;
   flex-grow: 1;
   display: flex;
   justify-content: start;
   align-items: flex-start; 
-  margin-left: 17%; /* Deja espacio para la barra de navegación */
+  margin-left: 17%; 
   width: 70%;
   
 }
@@ -77,6 +75,18 @@ nav a.active {
 }
 
 
+  .input-ancho {
+  width: 100%;     /* O un ancho fijo como 300px si prefieres */
+  resize: vertical; /* Permite que el usuario cambie el alto si quiere */
+  padding: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: none; 
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: 10px;
+
+}
 
 
 
@@ -282,6 +292,37 @@ main {
   align-items: center; 
   margin-left: 0%;
 }
+dialog {
+  padding: 32px 24px;
+  border-radius: 16px;
+  border: none;
+  max-width: 95vw;
+  width: 420px;
+  min-width: 320px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  text-align: left;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+   background-color:  #E3D8D4;
+}
+dialog::backdrop {
+  background: rgba(0,0,0,0.25);
+}
+dialog input[type="text"],
+dialog input[type="number"],
+dialog input[type="url"],
+dialog input[type="email"],
+dialog textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: none;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
 
 /* Estilo del botón "Agregar" */
 .btn-agregar, .btn-agregar-bebida, .btn-agregar-postre,.btn-agregar-comida{
@@ -309,9 +350,6 @@ main {
   color: white;
   cursor: pointer;
 }
-
-
-
 
 .btn-eliminar, .btn-eliminar-postre, .btn-eliminar-comida {
   margin-right: 5px;

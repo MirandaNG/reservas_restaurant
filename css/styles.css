@@ -9,7 +9,18 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+.input-ancho {
+  width: 100%;     /* O un ancho fijo como 300px si prefieres */
+  resize: vertical; /* Permite que el usuario cambie el alto si quiere */
+  padding: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: none; 
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: 10px;
 
+}
 .navbar {
   background-color: rgba(33, 22, 19, 0.9);
   position: fixed;
@@ -206,6 +217,7 @@ nav a.active,
   scroll-behavior: smooth;
   flex: 1;
   padding: 10px 0;
+    justify-content: center; 
   
   /* Hide scrollbar but keep functionality */
   -ms-overflow-style: none;
@@ -440,7 +452,7 @@ nav a.active,
 
 .form-container {
   max-width: 100%;
-  max-height: 100%;
+  max-height: auto;
   border-radius: 10px;
   padding: 10px;
   background-color: #f1e4dd;
@@ -448,16 +460,22 @@ nav a.active,
 }
 
 .inputs-container {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 90%;
-  justify-content: space-evenly;
+  align-items:left ;
+  
 }
 
 .inputs-container label {
   width: 30%;
   padding: 10px;
   margin-left: 10px;
-  justify-items: left;
+  justify-items: right;
+  
+}
+.usuario label{
+  margin-right: 25px;
 }
 
 .inputs-container input {
@@ -465,8 +483,10 @@ nav a.active,
   padding: 10px;
   margin: 10px auto;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 20px;
   background-color: white;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+  
 }
 
 .buttons-container {
@@ -680,7 +700,7 @@ nav a.active,
     max-width: 100vw !important;
     margin: 0 !important;
     padding: 0 0 24px 0 !important;
-    font-size: 0.7em !important;
+    font-size: 1em !important;
   }
   #comentario-form input[type="text"],
   #comentario-form button {
@@ -695,23 +715,25 @@ nav a.active,
     flex-direction: column !important;
     align-items: stretch !important;
     height: auto !important;
-    padding: 24px 0 !important;
+    padding: 10px 0 !important;
     margin-bottom: 50% !important;
     width: 100vw !important;
-    max-width: 100vw !important;
+    max-width: 88vw !important;
   }
    .conocenos-container .img-derecha {
-    width: 100vw !important;
-    max-width: 90vw !important;
+    width: 88vw !important;
+   
     min-width: 0 !important;
     height: auto !important;
    
     display: block !important;
     object-fit: contain !important;
-    border-radius: 16px !important;
-    box-sizing: border-box !important;
-    order: 4;
+    border-radius: 10px !important;
+   
+  
     margin-top: 0 !important;
+    
+      order: 4;
 
   }
   .text-container {
@@ -725,16 +747,16 @@ nav a.active,
     margin: 0 0 16px 0 !important;
   }
   .ubicanos-texto p {
-    width: 100vw !important;
+    width: 88vw !important;
     max-width: 100vw !important;
     margin: 0 auto 16px auto !important;
     padding: 0 5vw !important;
     text-align: center !important;
     display: block !important;
   }
-  
+ 
    #map {
-    width: 100vw !important;
+    width: 88vw !important;
     max-width: 90vw !important;
     min-width: 0 !important;
     height: 60vw !important;
@@ -745,6 +767,13 @@ nav a.active,
     display: block !important;
     box-sizing: border-box !important;
   }
+  @media (max-width: 600px) {
+  .img-derecha {
+    max-width: 98%;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+}
 
 
   /* SECCIÓN PROMOCIONES EN FILA */
@@ -792,12 +821,19 @@ nav a.active,
     box-sizing: border-box !important;
     max-width: 100vw !important;
   }
-  img {
-    max-width: 100vw !important;
-    height: auto !important;
-    display: block;
+
+}
+@media (max-width: 700px) {
+  .mesa-options {
+    flex-direction: column;
+    gap: 24px;
   }
-  
+}
+@media (min-width: 701px) {
+  .mesa-options {
+    flex-direction: row;
+    gap: 32px;
+  }
 }
 @media (max-width: 900px) {
   /* Desde la sección reservar, todo en columna, bien separado */
@@ -821,7 +857,6 @@ nav a.active,
     align-items: center !important;
     width: 100vw !important;
     box-sizing: border-box !important;
-    margin: 0 auto 32px auto !important;
     padding: 0 !important;
     gap: 0 !important;
   }
@@ -834,20 +869,28 @@ nav a.active,
   #reservar .Subtitulo,
   #promociones .Subtitulo,
   #menu .Subtitulo {
-    margin-top: 0 !important;
+    
     margin-bottom: 16px !important;
     text-align: center !important;
     width: 100vw !important;
   }
-  .reservar-texto,
-  .promociones-texto {
-    margin-bottom: 16px !important;
+  .reservar-texto {
+    margin-bottom: 100px !important;
     width: 100vw !important;
     text-align: center !important;
   }
+  .promociones-texto{
+     margin-bottom: 16px !important;
+    width: 100vw !important;
+    text-align: center !important;
+    margin-top: 20px !important;
+  }
+  #promociones {
+  margin-top: 200px;
+}
   .reservar-texto p,
   .promociones-texto p {
-    margin: 0 !important;
+   
     padding: 0 8vw !important;
     width: 100vw !important;
     font-size: 1.1em !important;
@@ -861,8 +904,8 @@ nav a.active,
   }
   .mesa {
     width: 70vw !important;
-    max-width: 290px !important;
-    margin: 0 auto 32px auto !important;
+  
+   
     display: flex !important;
     flex-direction: column !important;
   }
@@ -887,20 +930,36 @@ nav a.active,
   .menu-cards,
   .bebida-cards,
   .postre-cards {
-    flex-direction: column !important;
+    flex-direction: row !important;
     align-items: center !important;
     width: 100vw !important;
     gap: 10px !important;
-    overflow-x: auto;
+    scroll-behavior: smooth;
+    
   }
+.menu-card,
   .promo-card,
-  .menu-card,
   .bebida-card,
   .postre-card {
-    width: 95vw !important;
+    width: calc(100vw - 40px) !important;   /* 20px a cada lado */
     min-width: 0 !important;
-    max-width: 100vw !important;
-    margin: 0 auto 24px auto !important;
+    max-width: 250px !important;
+    margin: 0 10px 14px 10px !important;
+   align-items: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  .menu-card img,
+  .promo-card img,
+  .bebida-card img,
+  .postre-card img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 33vh !important;
+    object-fit: contain !important;         /* Escala sin deformar */
+    display: block !important;
   }
 
   /* Evitar scroll horizontal */
@@ -914,7 +973,7 @@ nav a.active,
     max-width: 100vw !important;
   }
   img {
-    max-width: 100vw !important;
+    
     height: auto !important;
     display: block;
   }

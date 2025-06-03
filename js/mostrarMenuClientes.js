@@ -102,34 +102,51 @@ function configurarCarrusel(container) {
     console.error('No se pudieron encontrar los elementos del carrusel');
     return;
   }
-  
-  const cardWidth = 215; // Ancho de tarjeta + gap (200px + 15px)
-  const scrollStep = cardWidth * 2; // Desplazar 2 tarjetas a la vez
-  
+
+  function getCardWidth() {
+  const card = cards.querySelector('.menu-card');
+  if (!card) return 200;
+  const style = window.getComputedStyle(card);
+  const marginLeft = parseInt(style.marginLeft) || 0;
+  const marginRight = parseInt(style.marginRight) || 0;
+  return card.offsetWidth + marginLeft + marginRight;
+}
+
+function scrollToCard(direction = 1) {
+  const cardWidth = getCardWidth();
+  // Encuentra el índice de la tarjeta actualmente centrada
+  let currentIndex = Math.round(cards.scrollLeft / cardWidth);
+  // Calcula el nuevo índice
+  let newIndex = currentIndex + direction;
+  // Limita el índice para no salirte del rango
+  newIndex = Math.max(0, Math.min(newIndex, cards.children.length - 1));
+  // Calcula el scroll para centrar la tarjeta (considerando margen)
+  const containerWidth = cards.offsetWidth;
+  const scrollLeft = (newIndex * cardWidth) + (cardWidth / 2) - (containerWidth / 2);
+  cards.scrollTo({
+    left: scrollLeft,
+    behavior: 'smooth'
+  });
+}
+
   btnLeft.addEventListener('click', () => {
-    cards.scrollBy({
-      left: -scrollStep,
-      behavior: 'smooth'
-    });
+    scrollToCard(-1);
   });
-  
+
   btnRight.addEventListener('click', () => {
-    cards.scrollBy({
-      left: scrollStep,
-      behavior: 'smooth'
-    });
+    scrollToCard(1);
   });
-  
+
   // Opcional: Ocultar botones cuando no se puede hacer scroll
-  cards.addEventListener('scroll', () => {
+  function updateButtons() {
     const maxScrollLeft = cards.scrollWidth - cards.clientWidth;
-    
     btnLeft.style.opacity = cards.scrollLeft <= 0 ? '0.5' : '1';
-    btnRight.style.opacity = cards.scrollLeft >= maxScrollLeft ? '0.5' : '1';
-  });
-  
+    btnRight.style.opacity = cards.scrollLeft >= maxScrollLeft - 1 ? '0.5' : '1';
+  }
+
+  cards.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+
   // Inicializar estado de botones
-  const maxScrollLeft = cards.scrollWidth - cards.clientWidth;
-  btnLeft.style.opacity = '0.5';
-  btnRight.style.opacity = maxScrollLeft > 0 ? '1' : '0.5';
+  setTimeout(updateButtons, 300);
 }

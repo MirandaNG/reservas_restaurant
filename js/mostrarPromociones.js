@@ -51,9 +51,17 @@ function configurarCarruselDinamico(container, promociones) {
   const btnRight = container.querySelector('.carrusel-btn:last-child');
   
   let index = 0;
-  const visibleCount = 3;
+   let autoSlideInterval;
 
+function getVisibleCount() {
+    if (window.innerWidth < 600) return 1;      // Móvil
+    if (window.innerWidth < 900) return 2;      // Tablet pequeño
+    if (window.innerWidth < 1200) return 3;     // Tablet grande
+    if (window.innerWidth < 1500) return 4;     // Laptop
+    return 5;                                   // Escritorio grande
+  }
   function renderCards(startIndex) {
+      const visibleCount = getVisibleCount();
     cardsContainer.innerHTML = ''; // Limpiar anteriores
 
     for (let i = 0; i < visibleCount; i++) {
@@ -70,18 +78,37 @@ function configurarCarruselDinamico(container, promociones) {
       cardsContainer.appendChild(card);
     }
   }
-
-  // Eventos
-  btnRight.addEventListener('click', () => {
+   function nextSlide() {
     index = (index + 1) % promociones.length;
     renderCards(index);
+  }
+
+  function prevSlide() {
+    index = (index - 1 + promociones.length) % promociones.length;
+    renderCards(index);
+  }
+
+  btnRight.addEventListener('click', () => {
+    nextSlide();
+    resetAutoSlide();
   });
 
   btnLeft.addEventListener('click', () => {
-    index = (index - 1 + promociones.length) % promociones.length;
-    renderCards(index);
+    prevSlide();
+    resetAutoSlide();
   });
 
-  // Render inicial
+  window.addEventListener('resize', () => renderCards(index));
+
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(nextSlide, 3500); // Cambia cada 3.5 segundos
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+  }
+
   renderCards(index);
+  startAutoSlide();
 }
