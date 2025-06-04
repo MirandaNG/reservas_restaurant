@@ -347,4 +347,3 @@ window.cerrarModalComida = function () {
 // Cargar al inicio
 cargarComidas();
 
-// -----------------

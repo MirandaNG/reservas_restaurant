@@ -10,8 +10,8 @@ body {
   font-style: normal;
 }
 .input-ancho {
-  width: 100%;     /* O un ancho fijo como 300px si prefieres */
-  resize: vertical; /* Permite que el usuario cambie el alto si quiere */
+  width: 100%;
+  resize: vertical;
   padding: 8px;
   font-family: inherit;
   font-size: 1rem;
@@ -19,7 +19,6 @@ body {
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
   border: none;
   border-radius: 10px;
-
 }
 .navbar {
   background-color: rgba(33, 22, 19, 0.9);
@@ -199,15 +198,17 @@ nav a.active,
   margin-bottom: 30px;
 }
 
+/* CARRUSEL BASICO*/
 .carrusel-basico {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 15px;
-  overflow: hidden;
+  overflow: visible;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 .promo-cards {
@@ -217,7 +218,6 @@ nav a.active,
   scroll-behavior: smooth;
   flex: 1;
   padding: 10px 0;
-    justify-content: center; 
   
   /* Hide scrollbar but keep functionality */
   -ms-overflow-style: none;
@@ -281,6 +281,15 @@ nav a.active,
   justify-content: center;
   z-index: 10;
   transition: all 0.3s ease;
+  position: absolute;
+}
+
+.carrusel-btn:first-child {
+  left: -25px;
+}
+
+.carrusel-btn:last-child {
+  right: -25px;
 }
 
 .carrusel-btn:hover {
@@ -304,6 +313,7 @@ nav a.active,
 .categoria-menu {
   margin: 30px 0;
   padding: 0 20px;
+  position: relative;
 }
 
 .categoria-menu h3 {
@@ -312,7 +322,7 @@ nav a.active,
   color: #e85d04;
 }
 
-/* Restore original menu cards functionality */
+/* MENU CARDS - SECCIÓN CORREGIDA */
 .menu-cards {
   display: flex;
   gap: 15px;
@@ -532,7 +542,7 @@ nav a.active,
 @media (max-width: 768px) {
   .carrusel-basico {
     gap: 10px;
-    padding: 0 10px;
+    padding: 0 30px; /* Aumentado para dar espacio a los botones */
   }
   
   .promo-card {
@@ -680,36 +690,6 @@ nav a.active,
     order: 2;
   }
 
-  /* Cards de menú y promociones en columna */
-  .menu-cards, .promo-cards {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    width: 100vw !important;
-    gap: 10px !important;
-    overflow-x: auto;
-  }
-  .menu-card, .promo-card, .bebida-card, .postre-card {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100vw !important;
-  }
-
-  /* Formularios y comentarios ocupan todo el ancho */
-  #comentarios, .comentarios-container {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    margin: 0 !important;
-    padding: 0 0 24px 0 !important;
-    font-size: 1em !important;
-  }
-  #comentario-form input[type="text"],
-  #comentario-form button {
-    padding: 6px 12px !important;
-  }
-  #comentario-form button {
-    padding: 8px 16px !important;
-  }
-
   /* Conócenos en columna */
   .conocenos-container {
     flex-direction: column !important;
@@ -722,19 +702,13 @@ nav a.active,
   }
    .conocenos-container .img-derecha {
     width: 88vw !important;
-   
     min-width: 0 !important;
     height: auto !important;
-   
     display: block !important;
     object-fit: contain !important;
     border-radius: 10px !important;
-   
-  
     margin-top: 0 !important;
-    
-      order: 4;
-
+    order: 4;
   }
   .text-container {
     width: 100% !important;
@@ -763,102 +737,64 @@ nav a.active,
     min-height: 220px !important;
     max-height: 400px !important;
     border-radius: 16px !important;
-    
     display: block !important;
     box-sizing: border-box !important;
   }
   @media (max-width: 600px) {
-  .img-derecha {
-    max-width: 98%;
-    margin-top: 16px;
-    margin-bottom: 16px;
+    .img-derecha {
+      max-width: 98%;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
   }
-}
 
-
-  /* SECCIÓN PROMOCIONES EN FILA */
+  /* SECCIÓN CARRUSEL CORREGIDA PARA MÓVIL */
   .carrusel-basico {
     flex-direction: row !important;
-    overflow-x: auto !important;
-    gap: 16px !important;
-    width: 100vw !important;
-    align-items: stretch !important;
-  }
-  .promo-cards {
-    flex-direction: row !important;
-    gap: 16px !important;
-    width: max-content !important;
-  }
-  .promo-card {
-    width: 48vw !important;
-    min-width: 200px !important;
+    overflow: visible !important;
+    width: 90% !important;
     max-width: 90vw !important;
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
+    position: relative !important;
+    padding: 0 20px !important;
+    margin: 0 auto !important;
   }
-  .promo-card img {
+  
+  .promo-cards, .menu-cards {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    scroll-behavior: smooth !important;
+    gap: 15px !important;
     width: 100% !important;
-    height: 40vw !important;
-    max-height: 300px !important;
-    object-fit: contain !important;
+    padding: 10px 5px !important;
   }
-
-  /* ORDEN VISUAL PORTADA Y CONÓCENOS EN MÓVIL */
-  .logo-titulo { order: 1; margin-bottom: 0 !important; }
-  .slogan { order: 2; margin-bottom: 0 !important; }
-  #conocenos { order: 3; }
-  .conocenos-container .img-derecha { order: 4; }
-
-  /* HTML y BODY: evitar scroll horizontal */
-  html, body {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    overflow-x: hidden !important;
+  
+  .promo-card, .menu-card {
+    min-width: 200px !important;
+    width: 200px !important;
+    flex-shrink: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
   }
-  * {
-    box-sizing: border-box !important;
-    max-width: 100vw !important;
-  }
-
-}
-@media (max-width: 700px) {
-  .mesa-options {
-    flex-direction: column;
-    gap: 24px;
-  }
-}
-@media (min-width: 701px) {
-  .mesa-options {
-    flex-direction: row;
-    gap: 32px;
-  }
-}
-@media (max-width: 900px) {
-  /* Desde la sección reservar, todo en columna, bien separado */
-
-  #reservar,
-  #reservar > *,
-  #promociones,
-  #promociones > *,
-  #menu,
-  #menu > *,
-  #comentarios,
-  #comentarios > *,
-  .Secciones-menu,
-  .Secciones-menu > *,
-  .promociones-container,
-  .promociones-container > *,
-  .menu-container,
-  .menu-container > * {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    width: 100vw !important;
-    box-sizing: border-box !important;
+  
+  .carrusel-btn {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 100 !important;
+    width: 36px !important;
+    height: 36px !important;
     padding: 0 !important;
-    gap: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .carrusel-btn:first-child {
+    left: -10px !important;
+  }
+  
+  .carrusel-btn:last-child {
+    right: -10px !important;
   }
 
   #reservar {
@@ -869,7 +805,6 @@ nav a.active,
   #reservar .Subtitulo,
   #promociones .Subtitulo,
   #menu .Subtitulo {
-    
     margin-bottom: 16px !important;
     text-align: center !important;
     width: 100vw !important;
@@ -880,17 +815,16 @@ nav a.active,
     text-align: center !important;
   }
   .promociones-texto{
-     margin-bottom: 16px !important;
+    margin-bottom: 16px !important;
     width: 100vw !important;
     text-align: center !important;
     margin-top: 20px !important;
   }
   #promociones {
-  margin-top: 200px;
-}
+    margin-top: 200px;
+  }
   .reservar-texto p,
   .promociones-texto p {
-   
     padding: 0 8vw !important;
     width: 100vw !important;
     font-size: 1.1em !important;
@@ -900,12 +834,9 @@ nav a.active,
     gap: 32px !important;
     margin-bottom: 32px !important;
     width: 70vw !important;
-    ;
   }
   .mesa {
     width: 70vw !important;
-  
-   
     display: flex !important;
     flex-direction: column !important;
   }
@@ -924,44 +855,6 @@ nav a.active,
     text-align: center !important;
   }
 
-  /* Carruseles y cards en columna */
-  .carrusel-basico,
-  .promo-cards,
-  .menu-cards,
-  .bebida-cards,
-  .postre-cards {
-    flex-direction: row !important;
-    align-items: center !important;
-    width: 100vw !important;
-    gap: 10px !important;
-    scroll-behavior: smooth;
-    
-  }
-.menu-card,
-  .promo-card,
-  .bebida-card,
-  .postre-card {
-    width: calc(100vw - 40px) !important;   /* 20px a cada lado */
-    min-width: 0 !important;
-    max-width: 250px !important;
-    margin: 0 10px 14px 10px !important;
-   align-items: center !important;
-    display: flex !important;
-    flex-direction: column !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-  }
-  .menu-card img,
-  .promo-card img,
-  .bebida-card img,
-  .postre-card img {
-    width: 100% !important;
-    height: 100% !important;
-    max-height: 33vh !important;
-    object-fit: contain !important;         /* Escala sin deformar */
-    display: block !important;
-  }
-
   /* Evitar scroll horizontal */
   html, body {
     width: 100vw !important;
@@ -973,8 +866,20 @@ nav a.active,
     max-width: 100vw !important;
   }
   img {
-    
     height: auto !important;
     display: block;
+  }
+}
+
+@media (max-width: 700px) {
+  .mesa-options {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+@media (min-width: 701px) {
+  .mesa-options {
+    flex-direction: row;
+    gap: 32px;
   }
 }
